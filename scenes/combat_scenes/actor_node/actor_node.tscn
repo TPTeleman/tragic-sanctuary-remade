@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmmsmwuie6spv"]
+
+[ext_resource type="Script" uid="uid://b7mljplpuypai" path="res://scripts/combat/actor_node.gd" id="1_e00eg"]
+[ext_resource type="Script" uid="uid://c6giaybka3r11" path="res://scripts/combat/actor_components/mouse_detector.gd" id="2_7gmdj"]
+[ext_resource type="PackedScene" uid="uid://ci6wu11sxrort" path="res://scenes/combat_scenes/sprite_body/heroes/cultist_sprite.tscn" id="2_ltjy4"]
+[ext_resource type="PackedScene" uid="uid://dku28e3hxxgbs" path="res://scenes/ui/health_bar/health_bar.tscn" id="4_058bc"]
+[ext_resource type="Texture2D" uid="uid://b0fpckluhx1st" path="res://sprites/actor_node/Actor_Anchor.png" id="5_ibr5j"]
+[ext_resource type="Texture2D" uid="uid://csg2bkdavj4yp" path="res://sprites/actor_node/Rank_Anchor.png" id="6_rtpsx"]
+[ext_resource type="Texture2D" uid="uid://d06yfsclb8ajf" path="res://sprites/actor_node/Select_Anchor.png" id="7_slq4p"]
+[ext_resource type="Texture2D" uid="uid://dxyvxbjvqxu3" path="res://sprites/actor_node/Select_Anchor_Light.png" id="8_xxfdi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_058bc"]
+size = Vector2(48, 64)
+
+[node name="Actor_Node" type="Node2D"]
+script = ExtResource("1_e00eg")
+
+[node name="Sprite_Body" type="Node2D" parent="."]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Sprite" parent="Sprite_Body" instance=ExtResource("2_ltjy4")]
+
+[node name="Mouse_Detector" type="Area2D" parent="."]
+script = ExtResource("2_7gmdj")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Mouse_Detector"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_058bc")
+
+[node name="Actor_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Actor_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health_Bar" parent="Actor_UI/Control" instance=ExtResource("4_058bc")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.2
+anchor_right = 0.8125
+anchor_bottom = 0.4
+offset_right = 0.0
+offset_bottom = 4.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Active_Marker" type="TextureRect" parent="Actor_UI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = -0.2
+anchor_right = 0.875
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_ibr5j")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Valid_Marker" type="TextureRect" parent="Actor_UI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = -0.2
+anchor_right = 0.875
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_rtpsx")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Select_Marker" type="TextureRect" parent="Actor_UI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = -0.2
+anchor_right = 0.875
+anchor_bottom = 0.4
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_slq4p")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Select_Glow" type="TextureRect" parent="Actor_UI/Control/Select_Marker"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_xxfdi")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=5 format=3 uid="uid://cf7enxhnpjsrk"]
+
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_ahjom"]
+[ext_resource type="Texture2D" uid="uid://fye60k5vg7vm" path="res://sprites/ability_sprites/interdiction.png" id="1_htw7m"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="2_2wfdl"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_eh474"]
+
+[resource]
+script = ExtResource("2_2wfdl")
+name = "Pass"
+icon = ExtResource("1_htw7m")
+skill_type = "None"
+skill_tags = 2
+accuracy_mod = 0
+crit_mod = 0
+is_crit_valid = false
+effects = Array[ExtResource("2_eh474")]([])
+cast_requirements = Array[ExtResource("1_ahjom")]([])
+cooldown = 0
+is_aoe = false
+can_target = 4
+cast_ranks = 15
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = false
+metadata/_custom_type_script = "uid://eibvw5jbccws"

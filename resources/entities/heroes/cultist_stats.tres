@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="HeroStats" load_steps=6 format=3 uid="uid://ut1s1e74lcks"]
+
+[ext_resource type="Texture2D" uid="uid://j5epp86yv7ka" path="res://sprites/actor_sprites/cultist/cultist.png" id="1_n33v0"]
+[ext_resource type="Script" uid="uid://wt5xynnfgjfk" path="res://scripts/entities/hero_stats.gd" id="1_qwm7q"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="3_ro77x"]
+[ext_resource type="Resource" uid="uid://dab56ijtgh3x3" path="res://resources/skills/shared/Shared_02.tres" id="5_eqeue"]
+[ext_resource type="Resource" uid="uid://ci3sm7hkj2rff" path="res://resources/skills/shared/Shared_03.tres" id="5_ro77x"]
+
+[resource]
+script = ExtResource("1_qwm7q")
+name = "Cultist"
+icon = ExtResource("1_n33v0")
+skill_set = Array[ExtResource("3_ro77x")]([ExtResource("5_eqeue"), ExtResource("5_ro77x")])
+max_hp = 38
+max_mind = 0
+accuracy = 100
+dodge = 15
+protection = 0
+speed = 1
+size = 1
+forward_move = 1
+bakward_move = 1
+actions_amount = 1
+bleed_res = 40
+blight_res = 40
+burn_res = 40
+stun_res = 20
+move_res = 20
+debuff_res = 20
+death_res = 0
+metadata/_custom_type_script = "uid://wt5xynnfgjfk"

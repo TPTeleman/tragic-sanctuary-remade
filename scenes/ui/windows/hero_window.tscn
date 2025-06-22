@@ -1,0 +1,424 @@
+[gd_scene load_steps=16 format=3 uid="uid://dyjibtpipwsil"]
+
+[ext_resource type="Script" uid="uid://mn6f1rm4wc8b" path="res://scenes/ui/windows/hero_window.gd" id="1_tyrv6"]
+[ext_resource type="Theme" uid="uid://dpm2d1jjx06rb" path="res://sprites/themes/borderless_panel_theme.tres" id="2_6xsyp"]
+[ext_resource type="Theme" uid="uid://7mp8knnc0rkm" path="res://sprites/themes/panel_theme.tres" id="3_cmw5n"]
+[ext_resource type="Theme" uid="uid://c28wh028i7nu7" path="res://sprites/themes/divide_panel_theme.tres" id="4_v00cb"]
+[ext_resource type="PackedScene" uid="uid://dv103ie2w31cs" path="res://scenes/ui/buttons/skill_button/skill_button.tscn" id="5_7wg20"]
+[ext_resource type="Texture2D" uid="uid://dnbw1yumm55vv" path="res://sprites/stats_sprites/res_bleed.png" id="6_6xsyp"]
+[ext_resource type="Texture2D" uid="uid://b08p6fn0bl8tl" path="res://sprites/stats_sprites/res_blight.png" id="7_jnmj1"]
+[ext_resource type="Texture2D" uid="uid://cufba4jullv08" path="res://sprites/stats_sprites/res_burn.png" id="8_iffrc"]
+[ext_resource type="Texture2D" uid="uid://btsex3km35ndt" path="res://sprites/stats_sprites/res_stun.png" id="9_p4ryx"]
+[ext_resource type="Texture2D" uid="uid://bfya1cj7sv51f" path="res://sprites/stats_sprites/res_move.png" id="10_pvcxx"]
+[ext_resource type="Texture2D" uid="uid://mutkrpb88no2" path="res://sprites/stats_sprites/stat_debuff.png" id="11_shn8u"]
+[ext_resource type="Texture2D" uid="uid://dxa6owfjibk1u" path="res://sprites/stats_sprites/res_death.png" id="12_j0kre"]
+[ext_resource type="Texture2D" uid="uid://bhsflxc3g4qv6" path="res://sprites/stats_sprites/stat_health.png" id="13_iffrc"]
+[ext_resource type="Texture2D" uid="uid://dj6kks3nupuy4" path="res://sprites/stats_sprites/res_stress.png" id="14_pvcxx"]
+[ext_resource type="Texture2D" uid="uid://bwu4w5a6lfw33" path="res://sprites/stats_sprites/stat_speed.png" id="15_shn8u"]
+
+[node name="Hero_Window" type="Control" node_paths=PackedStringArray("hero_name_lbl", "hero_class_lbl")]
+layout_mode = 3
+anchor_top = 0.0888889
+anchor_right = 0.55
+anchor_bottom = 0.888889
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tyrv6")
+hero_name_lbl = NodePath("Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Title_Box/Name_Lbl")
+hero_class_lbl = NodePath("Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Title_Box/Class_Lbl")
+layer = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6xsyp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Hero_Panel" type="Panel" parent="Background/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_cmw5n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left_Container" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Div_Panel" type="Panel" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("4_v00cb")
+
+[node name="Label" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Div_Panel"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Combat Skills"
+
+[node name="Target_Box" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Label" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Target_Box"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Rank"
+
+[node name="Label2" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Target_Box"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Targets"
+
+[node name="Ability_Box" type="GridContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 4
+
+[node name="Skill_Button" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button2" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button3" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button4" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button5" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button6" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button7" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button8" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button9" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button10" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Skill_Button11" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Ability_Box" instance=ExtResource("5_7wg20")]
+layout_mode = 2
+
+[node name="Stat_Panel" type="Panel" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("4_v00cb")
+
+[node name="Res_Box" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bleed_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Bleed_Box"]
+layout_mode = 2
+text = "BLD"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Bleed_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_6xsyp")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Bleed_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Blight_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Blight_Box"]
+layout_mode = 2
+text = "BLGT"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Blight_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("7_jnmj1")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Blight_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Burn_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Burn_Box"]
+layout_mode = 2
+text = "BURN"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Burn_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_iffrc")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Burn_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Stun_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Stun_Box"]
+layout_mode = 2
+text = "STN"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Stun_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("9_p4ryx")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Stun_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Move_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Move_Box"]
+layout_mode = 2
+text = "MOVE"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Move_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("10_pvcxx")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Move_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Debuff_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Debuff_Box"]
+layout_mode = 2
+text = "DBFF"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Debuff_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("11_shn8u")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Debuff_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Death_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Death_Box"]
+layout_mode = 2
+text = "DTH"
+horizontal_alignment = 1
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Death_Box"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("12_j0kre")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Left_Container/Stat_Panel/Res_Box/Death_Box"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Center_Container" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Title_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Title_Box"]
+layout_mode = 2
+text = "Hero Name"
+horizontal_alignment = 1
+
+[node name="Class_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Title_Box"]
+layout_mode = 2
+text = "Hero Class"
+horizontal_alignment = 1
+
+[node name="Hero_Rect" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(206, 206)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+expand_mode = 1
+
+[node name="Stat_Container" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Stat_Box" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Health_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Health_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HP"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Health_Box"]
+layout_mode = 2
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Health_Box/Container"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("13_iffrc")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Health_Box/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "999/999"
+
+[node name="Stress_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Stress_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stress"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Stress_Box"]
+layout_mode = 2
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Stress_Box/Container"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("14_pvcxx")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Stress_Box/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10/10"
+
+[node name="Speed_Box" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Speed_Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SPD"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Speed_Box"]
+layout_mode = 2
+
+[node name="Stat_Icon" type="TextureRect" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Speed_Box/Container"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("15_shn8u")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="Background/MarginContainer/Hero_Panel/HBoxContainer/Center_Container/VBoxContainer/Stat_Container/Stat_Box/Speed_Box/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "999"
+
+[node name="Right_Container" type="VBoxContainer" parent="Background/MarginContainer/Hero_Panel/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3

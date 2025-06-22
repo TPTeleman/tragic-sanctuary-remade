@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgwtv7giby417"]
+
+[ext_resource type="Script" uid="uid://c4v7hux8x8cww" path="res://scenes/gui/gui.gd" id="1_q21vd"]
+[ext_resource type="PackedScene" uid="uid://c7eu3jq0c7gn2" path="res://scenes/ui/windows/combat_window.tscn" id="2_x2qsw"]
+[ext_resource type="PackedScene" uid="uid://dyjibtpipwsil" path="res://scenes/ui/windows/hero_window.tscn" id="3_0jpgx"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_q21vd")
+
+[node name="Combat_Window" parent="." instance=ExtResource("2_x2qsw")]
+
+[node name="Hero_Window" parent="." instance=ExtResource("3_0jpgx")]

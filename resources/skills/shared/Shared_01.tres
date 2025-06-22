@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=7 format=3 uid="uid://o2elgi1gt6xd"]
+
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="1_3nu6c"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_8t0ne"]
+[ext_resource type="Texture2D" uid="uid://dk2tasyafbri8" path="res://sprites/ability_sprites/high-shot.png" id="1_rhnju"]
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_u77af"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="3_u77af"]
+
+[sub_resource type="Resource" id="Resource_2o0lt"]
+script = ExtResource("3_u77af")
+min_damage = 6
+max_damage = 10
+prot_pierce = 0
+direct_damage = true
+is_crit_valid = true
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[resource]
+script = ExtResource("1_3nu6c")
+name = "RangedAttack"
+icon = ExtResource("1_rhnju")
+skill_type = "Ranged"
+skill_tags = 1
+accuracy_mod = 0
+crit_mod = 5
+is_crit_valid = true
+effects = Array[ExtResource("1_8t0ne")]([SubResource("Resource_2o0lt")])
+cast_requirements = Array[ExtResource("1_u77af")]([])
+cooldown = 0
+is_aoe = false
+can_target = 2
+cast_ranks = 12
+target_ranks = 12
+can_target_alive = true
+can_target_corpse = true
+metadata/_custom_type_script = "uid://eibvw5jbccws"

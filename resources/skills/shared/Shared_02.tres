@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=7 format=3 uid="uid://dab56ijtgh3x3"]
+
+[ext_resource type="Texture2D" uid="uid://dtr84uqnjni5q" path="res://sprites/ability_sprites/healing.png" id="1_2qdsj"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_beisx"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="1_j636r"]
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_xy2ol"]
+[ext_resource type="Script" uid="uid://crn2u7dicff4e" path="res://scripts/action_scripts/action_modules/heal_flat_effect.gd" id="3_xy2ol"]
+
+[sub_resource type="Resource" id="Resource_u57ig"]
+script = ExtResource("3_xy2ol")
+min_heal = 0
+max_heal = 12
+direct_heal = true
+is_crit_valid = true
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://crn2u7dicff4e"
+
+[resource]
+script = ExtResource("1_j636r")
+name = "HealAlly"
+icon = ExtResource("1_2qdsj")
+skill_type = "None"
+skill_tags = 2
+accuracy_mod = 0
+crit_mod = 5
+is_crit_valid = true
+effects = Array[ExtResource("1_beisx")]([SubResource("Resource_u57ig")])
+cast_requirements = Array[ExtResource("1_xy2ol")]([])
+cooldown = 0
+is_aoe = false
+can_target = 1
+cast_ranks = 15
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = false
+metadata/_custom_type_script = "uid://eibvw5jbccws"

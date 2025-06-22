@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv103ie2w31cs"]
+
+[ext_resource type="Theme" uid="uid://7mp8knnc0rkm" path="res://sprites/themes/panel_theme.tres" id="1_gryaf"]
+[ext_resource type="Script" uid="uid://bknfxku0pdr" path="res://scenes/ui/buttons/skill_button/skill_button.gd" id="1_sty5o"]
+
+[node name="Skill_Button" type="Control"]
+custom_minimum_size = Vector2(74, 74)
+layout_mode = 3
+anchor_right = 0.0640625
+anchor_bottom = 0.113889
+offset_right = -18.0
+offset_bottom = -18.0
+script = ExtResource("1_sty5o")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(41, 41)
+mouse_filter = 1
+theme = ExtResource("1_gryaf")
+
+[node name="Icon_Rect" type="TextureRect" parent="Background"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Highlight_Rect" type="ColorRect" parent="Background"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(1, 0.6, 0.25, 0.396078)
+
+[node name="Disabled_Rect" type="ColorRect" parent="Background"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.16, 0.096, 0.096, 0.65098)
+
+[node name="Cooldown_Lbl" type="Label" parent="Background/Disabled_Rect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

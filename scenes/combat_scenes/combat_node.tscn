@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://d06qrtx5nvaxy"]
+
+[ext_resource type="Script" uid="uid://h50i6slkm26b" path="res://scripts/combat/combat_node.gd" id="1_oaoyi"]
+[ext_resource type="Script" uid="uid://c24bk8wdc8pp8" path="res://scripts/combat/managers/entity_manager.gd" id="2_ep2ay"]
+[ext_resource type="Script" uid="uid://gxvnc03yckpo" path="res://scripts/combat/managers/rank_manager.gd" id="2_r42lx"]
+[ext_resource type="Script" uid="uid://do4cnhofpijjw" path="res://scripts/combat/structure/combat_queue.gd" id="2_w48at"]
+[ext_resource type="Script" uid="uid://bgyw1uvbuv1my" path="res://scripts/combat/managers/turn_manager.gd" id="4_tggl0"]
+[ext_resource type="Script" uid="uid://dso6j0hbm4duk" path="res://scripts/combat/managers/action_manager.gd" id="5_mlh27"]
+
+[node name="Combat_Node" type="Node" node_paths=PackedStringArray("entity_manager", "action_manager", "rank_manager", "turn_manager", "combat_queue")]
+script = ExtResource("1_oaoyi")
+entity_manager = NodePath("Managers/Entity_Manager")
+action_manager = NodePath("Managers/Action_Manager")
+rank_manager = NodePath("Managers/Rank_Manager")
+turn_manager = NodePath("Managers/Turn_Manager")
+combat_queue = NodePath("Combat_Queue")
+metadata/_custom_type_script = "uid://h50i6slkm26b"
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="Entity_Manager" type="Node" parent="Managers" node_paths=PackedStringArray("entity_parent")]
+script = ExtResource("2_ep2ay")
+entity_parent = NodePath("../../Entities")
+metadata/_custom_type_script = "uid://c24bk8wdc8pp8"
+
+[node name="Action_Manager" type="Node" parent="Managers"]
+script = ExtResource("5_mlh27")
+metadata/_custom_type_script = "uid://dso6j0hbm4duk"
+
+[node name="Rank_Manager" type="Node" parent="Managers" node_paths=PackedStringArray("hero_rank_one", "monster_rank_one")]
+script = ExtResource("2_r42lx")
+hero_rank_one = NodePath("Hero_Rank")
+monster_rank_one = NodePath("Monster_Rank")
+rank_distance = 96
+metadata/_custom_type_script = "uid://gxvnc03yckpo"
+
+[node name="Hero_Rank" type="Marker2D" parent="Managers/Rank_Manager"]
+position = Vector2(512, 384)
+
+[node name="Monster_Rank" type="Marker2D" parent="Managers/Rank_Manager"]
+position = Vector2(768, 384)
+
+[node name="Turn_Manager" type="Node" parent="Managers"]
+script = ExtResource("4_tggl0")
+metadata/_custom_type_script = "uid://bgyw1uvbuv1my"
+
+[node name="Combat_Queue" type="Node" parent="."]
+script = ExtResource("2_w48at")
+metadata/_custom_type_script = "uid://do4cnhofpijjw"
+
+[node name="Entities" type="Node2D" parent="."]
+
+[connection signal="update_actor_marker" from="Managers/Action_Manager" to="Managers/Entity_Manager" method="update_actor_marker"]
+[connection signal="update_all_markers" from="Managers/Action_Manager" to="Managers/Entity_Manager" method="update_all_markers"]
+[connection signal="update_markers" from="Managers/Action_Manager" to="Managers/Entity_Manager" method="update_markers"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://yra504pftpca"]
+
+[ext_resource type="Theme" uid="uid://7mp8knnc0rkm" path="res://assets/themes/panel_theme.tres" id="1_den5g"]
+[ext_resource type="Texture2D" uid="uid://6pbshivbuwl7" path="res://assets/actor_sprites/basic_rat/rat.png" id="2_4gqmu"]
+[ext_resource type="Script" uid="uid://c5b2icw5jc3ou" path="res://scenes/gui/turn_order/turn_panel/turn_panel.gd" id="2_gim23"]
+[ext_resource type="Texture2D" uid="uid://b0fpckluhx1st" path="res://assets/actor_node/Actor_Anchor.png" id="4_ycut0"]
+[ext_resource type="Texture2D" uid="uid://csg2bkdavj4yp" path="res://assets/actor_node/Rank_Anchor.png" id="5_j7ble"]
+
+[node name="Turn_Panel" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+size_flags_vertical = 4
+theme = ExtResource("1_den5g")
+script = ExtResource("2_gim23")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Icon" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_4gqmu")
+expand_mode = 1
+
+[node name="Selected" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.09375
+anchor_top = 0.78125
+anchor_right = 1.09375
+anchor_bottom = 1.21875
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ycut0")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Side" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.09375
+anchor_top = 0.15625
+anchor_right = 1.09375
+anchor_bottom = 0.34375
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, -1)
+texture = ExtResource("5_j7ble")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

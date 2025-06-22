@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveSkill" load_steps=7 format=3 uid="uid://cqbk3vhb5xl0n"]
+
+[ext_resource type="Texture2D" uid="uid://ihb5w3l1iljh" path="res://sprites/ability_sprites/back-forth.png" id="1_q0b2g"]
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_vxcsu"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_mmxgo"]
+[ext_resource type="Script" uid="uid://cdwbqqh36xdof" path="res://scripts/action_scripts/action_modules/move_to_rank_effect.gd" id="3_6pirp"]
+[ext_resource type="Script" uid="uid://unv2msytnlmk" path="res://scripts/skill_scripts/move_skill.gd" id="4_atkvm"]
+
+[sub_resource type="Resource" id="Resource_a3xno"]
+script = ExtResource("3_6pirp")
+rank_type = 1
+target_rank = 0
+pierce_mod = 0
+resist_valid = false
+target_type = 1
+on_hit = true
+on_miss = true
+apply_once = true
+metadata/_custom_type_script = "uid://cdwbqqh36xdof"
+
+[resource]
+script = ExtResource("4_atkvm")
+name = "Move"
+icon = ExtResource("1_q0b2g")
+skill_type = "None"
+skill_tags = 8
+accuracy_mod = 0
+crit_mod = 0
+is_crit_valid = false
+effects = Array[ExtResource("2_mmxgo")]([SubResource("Resource_a3xno")])
+cast_requirements = Array[ExtResource("1_vxcsu")]([])
+cooldown = 0
+is_aoe = false
+can_target = 1
+cast_ranks = 15
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = true
+metadata/_custom_type_script = "uid://eibvw5jbccws"

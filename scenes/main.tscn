@@ -1,0 +1,14 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq172wv43rdkr"]
+
+[ext_resource type="Script" uid="uid://cw8fhln3e7ux7" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://d06qrtx5nvaxy" path="res://scenes/combat_scenes/combat_node.tscn" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://d3t73c2wishnm" path="res://scripts/entities/entity_stats.gd" id="2_sugp2"]
+[ext_resource type="Resource" uid="uid://ut1s1e74lcks" path="res://resources/entities/heroes/cultist_stats.tres" id="3_jyhfs"]
+[ext_resource type="Resource" uid="uid://quq4db11nrx2" path="res://resources/entities/heroes/druid_stats.tres" id="3_tefeu"]
+[ext_resource type="Resource" uid="uid://bald6crwaljnf" path="res://resources/entities/heroes/archer_stats.tres" id="4_o6xl0"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_o5qli")
+team = Array[ExtResource("2_sugp2")]([ExtResource("3_tefeu"), ExtResource("4_o6xl0"), ExtResource("3_jyhfs")])
+
+[node name="Combat_Node" parent="." instance=ExtResource("2_0wfyh")]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci6wu11sxrort"]
+
+[ext_resource type="Script" uid="uid://rfi7wdsyto4k" path="res://scripts/combat/actor_sprite.gd" id="1_qulu8"]
+[ext_resource type="Texture2D" uid="uid://j5epp86yv7ka" path="res://sprites/actor_sprites/cultist/cultist.png" id="1_s8jyp"]
+
+[node name="Sprite" type="Sprite2D"]
+texture = ExtResource("1_s8jyp")
+offset = Vector2(0, -32)
+script = ExtResource("1_qulu8")

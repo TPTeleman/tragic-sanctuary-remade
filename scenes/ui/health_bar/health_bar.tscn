@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dku28e3hxxgbs"]
+
+[ext_resource type="Script" uid="uid://ckgdyfh1vjbn4" path="res://scenes/gui/health_bar/health_bar.gd" id="1_5q1hj"]
+[ext_resource type="Texture2D" uid="uid://bv25dhjwpaco5" path="res://assets/actor_node/health_bar/health_bar_background.png" id="2_nyfjj"]
+[ext_resource type="Texture2D" uid="uid://rufqhkqv42v2" path="res://assets/actor_node/health_bar/health_bar_damage_fill.png" id="3_x2jwu"]
+[ext_resource type="Texture2D" uid="uid://dy0mhl31b7a08" path="res://assets/actor_node/health_bar/health_bar_heal_fill.png" id="4_dtjuj"]
+[ext_resource type="Texture2D" uid="uid://cof3u3g8vcht8" path="res://assets/actor_node/health_bar/health_bar_fill.png" id="5_ddtyh"]
+
+[node name="Health_Bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1160.0
+offset_bottom = -704.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5q1hj")
+
+[node name="Margin_Container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Damage_Offset" type="TextureProgressBar" parent="Margin_Container"]
+layout_mode = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_nyfjj")
+texture_progress = ExtResource("3_x2jwu")
+
+[node name="Heal_Offset" type="TextureProgressBar" parent="Margin_Container"]
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("4_dtjuj")
+
+[node name="Health_Offset" type="TextureProgressBar" parent="Margin_Container"]
+layout_mode = 2
+value = 25.0
+nine_patch_stretch = true
+texture_progress = ExtResource("5_ddtyh")

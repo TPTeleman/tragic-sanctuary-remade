@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dysj6d511uqx2"]
+
+[ext_resource type="Texture2D" uid="uid://b5o8i81ei58mg" path="res://assets/status_sprites/status_strength.png" id="1_wnh15"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_icdg0"]
+font_size = 14
+font_color = Color(0.526423, 0.526423, 0.526423, 1)
+
+[node name="Status_Container" type="HBoxContainer"]
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Icon_Rect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_wnh15")
+expand_mode = 1
+
+[node name="Amount_Lbl" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "125%"
+horizontal_alignment = 1
+
+[node name="Duration_Lbl" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(999 turns)"
+label_settings = SubResource("LabelSettings_icdg0")
+horizontal_alignment = 1
