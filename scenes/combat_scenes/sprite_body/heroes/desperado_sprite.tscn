@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://4pu82mcn7582"]
 
-[ext_resource type="Texture2D" uid="uid://b0vxa056mxw8v" path="res://sprites/actor_sprites/archer/archer.png" id="1_uthdv"]
+[ext_resource type="Texture2D" uid="uid://iwglw3cn2fb7" path="res://sprites/actor_sprites/hotshot/hotshot.png" id="1_lcs3y"]
 [ext_resource type="Script" uid="uid://rfi7wdsyto4k" path="res://scripts/combat/actor_sprite.gd" id="2_3615v"]
 
 [node name="Sprite" type="Sprite2D"]
-texture = ExtResource("1_uthdv")
-offset = Vector2(0, -32)
+texture = ExtResource("1_lcs3y")
+offset = Vector2(0, -34)
 script = ExtResource("2_3615v")

@@ -83,6 +83,12 @@ func set_actor_display(actor: Actor) -> void:
 		caster_lbl.text = stats.name
 
 
+func disable_skill_button(skill_id: String, value: bool) -> void:
+	for control: SkillButton in ability_box.get_children():
+		if control.skill != null and control.skill.name == skill_id:
+			control.set_disabled(!value)
+
+
 func hide_actor_display() -> void:
 	ability_container.hide()
 	

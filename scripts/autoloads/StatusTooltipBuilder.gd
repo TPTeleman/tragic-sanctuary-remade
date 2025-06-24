@@ -23,7 +23,7 @@ func format_stat_mods(effects: Array[StatusEffect]) -> Array[String]:
 						"duration": 0
 					}
 				flat_mods[key].amount += amount
-				flat_mods[key].duration = min(flat_mods[key].duration, effect.duration)
+				flat_mods[key].duration = min(flat_mods[key].duration, effect.duration) if flat_mods[key].duration else effect.duration
 			if mod is CombatStatMultiply or mod is DamageMultiStatus:
 				if !percent_mods.has(key):
 					percent_mods[key] = {
@@ -31,7 +31,7 @@ func format_stat_mods(effects: Array[StatusEffect]) -> Array[String]:
 						"duration": 0
 					}
 				percent_mods[key].amount += amount
-				percent_mods[key].duration = min(percent_mods[key].duration, effect.duration)
+				percent_mods[key].duration = min(percent_mods[key].duration, effect.duration) if percent_mods[key].duration else effect.duration
 	
 	for stat in flat_mods:
 		var duration := " [color=868686][font_size=14](%d turns)[/font_size][/color]" % flat_mods[stat].duration
@@ -54,6 +54,7 @@ func format_stat_mods(effects: Array[StatusEffect]) -> Array[String]:
 			] + duration)
 	
 	return lines
+
 
 func aggregate_dots(status_effects: Array[StatusEffect]) -> Dictionary:
 	var dots := {}

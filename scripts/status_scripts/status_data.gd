@@ -15,6 +15,7 @@ class_name StatusData
 
 @export var visible : bool = true
 @export var is_unique : bool = false
+@export var only_one : bool = false
 
 @export_category("Duration & Stacking")
 @export var max_duration : int = -1

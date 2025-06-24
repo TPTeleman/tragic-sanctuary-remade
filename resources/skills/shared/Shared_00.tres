@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatSkill" load_steps=10 format=3 uid="uid://iwtuadg66t4"]
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=11 format=3 uid="uid://iwtuadg66t4"]
 
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="1_7ean5"]
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_oqmfi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="2_swrmv"]
 [ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="4_jy6kp"]
 [ext_resource type="Resource" uid="uid://bu01yxglc32rv" path="res://resources/status_effects/dot/bleed/dot_bleed_1.tres" id="5_jy6kp"]
+[ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="7_wjlrt"]
 
 [sub_resource type="Resource" id="Resource_cidbs"]
 script = ExtResource("2_swrmv")
@@ -42,6 +43,7 @@ accuracy_mod = 0
 crit_mod = 5
 is_crit_valid = true
 effects = Array[ExtResource("1_oqmfi")]([SubResource("Resource_cidbs"), SubResource("Resource_wajpy")])
+modifiers = Array[ExtResource("7_wjlrt")]([])
 cast_requirements = Array[ExtResource("1_swrmv")]([])
 cooldown = 0
 is_aoe = false

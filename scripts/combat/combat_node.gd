@@ -158,6 +158,18 @@ func give_actor_control():
 		entity_manager.color_marks(ally, foe)
 		action_manager.start_actor_turn(actor, ally, foe)
 		CombatEvents.turn_started.emit(actor)
+		
+		var skills := actor.stats.get_skill_set().duplicate()
+		if actor.stats.move_skill: skills.append(actor.stats.move_skill)
+		if actor.stats.pass_skill: skills.append(actor.stats.pass_skill)
+		
+		for skill in skills:
+			var context := {
+				"performer": actor,
+				"targets": ally + foe
+			}
+			var valid: bool = skill.passive_validation(context)
+			Gui.get_window_by_name("Combat_Window").disable_skill_button(skill.name, valid)
 
 
 func _on_trigger_broadcast(actor: Actor, trigger: String, context: Dictionary) -> void:
@@ -191,6 +203,10 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 	for t in targets:
 		context["target"] = t
 		
+		for mod in skill.modifiers:
+			if mod.should_run(context) and mod.is_global:
+				mod.modify_global(context)
+		
 		if t.side != performer.side:
 			var miss_chance : int = 100 - performer.get_stat("Acc") + t.get_stat("Dodge") - skill.accuracy_mod
 			#print("Chance to miss: %d%%" % miss_chance)
@@ -207,6 +223,7 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 			if context["is_crit"]:
 				print("Yeah, it's a crit.")
 		
+		var new_effects: Array[ActionEffect]
 		for i in len(skill.effects):
 			var effect: ActionEffect = skill.effects[i].duplicate(true)
 			var effect_id := "effect_%d" % i
@@ -216,7 +233,14 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 				"skill_type": context["skill_type"],
 			}
 			effect.context = context
-			
+			new_effects.append(effect)
+		
+		for mod in skill.modifiers:
+			if mod.should_run(context) and !mod.is_global:
+				for effect in new_effects:
+					mod.modify(context["effect_data"].get(effect.effect_id, {}))
+		
+		for effect in new_effects:
 			var step := effect.declare()
 			action.steps.append(step)
 	

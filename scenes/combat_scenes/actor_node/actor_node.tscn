@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7mljplpuypai" path="res://scripts/combat/actor_node.gd" id="1_e00eg"]
 [ext_resource type="Script" uid="uid://c6giaybka3r11" path="res://scripts/combat/actor_components/mouse_detector.gd" id="2_7gmdj"]
-[ext_resource type="PackedScene" uid="uid://ci6wu11sxrort" path="res://scenes/combat_scenes/sprite_body/heroes/cultist_sprite.tscn" id="2_ltjy4"]
+[ext_resource type="PackedScene" uid="uid://ci6wu11sxrort" path="res://scenes/combat_scenes/sprite_body/heroes/crimsonking_sprite.tscn" id="2_ltjy4"]
 [ext_resource type="PackedScene" uid="uid://dku28e3hxxgbs" path="res://scenes/ui/health_bar/health_bar.tscn" id="4_058bc"]
 [ext_resource type="Texture2D" uid="uid://b0fpckluhx1st" path="res://sprites/actor_node/Actor_Anchor.png" id="5_ibr5j"]
 [ext_resource type="Texture2D" uid="uid://csg2bkdavj4yp" path="res://sprites/actor_node/Rank_Anchor.png" id="6_rtpsx"]

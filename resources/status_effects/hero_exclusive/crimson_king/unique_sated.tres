@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=7 format=3 uid="uid://dxks3ymjfgxl3"]
+
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_g4ubj"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="2_i4uoe"]
+[ext_resource type="Script" uid="uid://crn2u7dicff4e" path="res://scripts/action_scripts/action_modules/heal_flat_effect.gd" id="2_kcab2"]
+[ext_resource type="Texture2D" uid="uid://dtx7m15w50wj5" path="res://sprites/status_sprites/unique_unholyfavor.png" id="4_dgecj"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="4_p6mmo"]
+
+[sub_resource type="Resource" id="Resource_p6mmo"]
+script = ExtResource("2_kcab2")
+min_heal = 6
+max_heal = 6
+direct_heal = false
+is_crit_valid = false
+target_type = 0
+on_hit = true
+on_miss = true
+apply_once = true
+metadata/_custom_type_script = "uid://crn2u7dicff4e"
+
+[resource]
+script = ExtResource("4_p6mmo")
+id = "sated"
+description = "Heals the holder for 6 HP at he end of every turn. [color=868686][font_size=14](3 turns)[/font_size][/color]"
+status_type = "Unique"
+res_type = ""
+trigger = "turn_start"
+stat_type = ""
+icon = ExtResource("4_dgecj")
+effects = Array[ExtResource("2_i4uoe")]([])
+actions = Array[ExtResource("1_g4ubj")]([SubResource("Resource_p6mmo")])
+visible = true
+is_unique = true
+only_one = true
+max_duration = 3
+stacks = false
+max_stacks = -1
+stack_duration = true
+metadata/_custom_type_script = "uid://4bjiidw6as8e"

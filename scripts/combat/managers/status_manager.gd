@@ -29,13 +29,14 @@ func apply_status(performer: Actor, target: Actor, context: Dictionary) -> void:
 			found = effect
 			break
 	
-	if found == null or !status_data.stacks:
+	if found == null:
 		var instance := StatusEffect.new(status_data, context.get("duration", status_data.max_duration), performer)
 		instance.ignore_turn = context.get("ignore", false)
 		target.get_status_effects().append(instance)
 	else:
-		found.amount += 1
-		found.amount = clampi(found.amount, -1, found.data.max_stacks)
+		if found.data.stacks:
+			found.amount += 1
+			found.amount = clampi(found.amount, -1, found.data.max_stacks)
 		if found.data.stack_duration:
 			found.duration += context.get("duration", 1)
 			found.duration = clampi(found.duration, -1, found.data.max_duration)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatSkill" load_steps=8 format=3 uid="uid://ci3sm7hkj2rff"]
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=9 format=3 uid="uid://ci3sm7hkj2rff"]
 
 [ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_eouc3"]
 [ext_resource type="Texture2D" uid="uid://b8jc0x7krk0j6" path="res://sprites/ability_sprites/shining-heart.png" id="1_uti12"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="2_hbsjt"]
 [ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="3_rgh8n"]
 [ext_resource type="Resource" uid="uid://4audrrmqiqnx" path="res://resources/status_effects/dot/regen/dot_regen_1.tres" id="4_kbpp7"]
+[ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="6_kbpp7"]
 
 [sub_resource type="Resource" id="Resource_dlgaw"]
 script = ExtResource("3_rgh8n")
@@ -28,6 +29,7 @@ accuracy_mod = 0
 crit_mod = 5
 is_crit_valid = true
 effects = Array[ExtResource("2_655qq")]([SubResource("Resource_dlgaw")])
+modifiers = Array[ExtResource("6_kbpp7")]([])
 cast_requirements = Array[ExtResource("1_eouc3")]([])
 cooldown = 0
 is_aoe = true

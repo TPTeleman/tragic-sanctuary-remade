@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="HeroStats" load_steps=5 format=3 uid="uid://bald6crwaljnf"]
+
+[ext_resource type="Texture2D" uid="uid://iwglw3cn2fb7" path="res://sprites/actor_sprites/hotshot/hotshot.png" id="1_nqtof"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="2_npfnd"]
+[ext_resource type="Script" uid="uid://wt5xynnfgjfk" path="res://scripts/entities/hero_stats.gd" id="3_6b4hk"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="4_xhuym"]
+
+[resource]
+script = ExtResource("3_6b4hk")
+name = "Desperado"
+icon = ExtResource("1_nqtof")
+skill_set = Array[ExtResource("4_xhuym")]([])
+passive_effects = Array[ExtResource("2_npfnd")]([])
+max_hp = 26
+max_mind = 0
+accuracy = 100
+dodge = 10
+protection = 0
+speed = 1
+size = 1
+forward_move = 1
+bakward_move = 1
+actions_amount = 1
+bleed_res = 40
+blight_res = 40
+burn_res = 40
+stun_res = 20
+move_res = 20
+debuff_res = 20
+death_res = 0
+metadata/_custom_type_script = "uid://wt5xynnfgjfk"

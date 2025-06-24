@@ -1,27 +1,28 @@
 [gd_resource type="Resource" script_class="StatusData" load_steps=6 format=3 uid="uid://cix2x3rkjb7x8"]
 
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_j34c1"]
-[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_script/status_modifier.gd" id="2_7f2ue"]
-[ext_resource type="Script" uid="uid://dl5w8nt7wo5xp" path="res://scripts/status_script/status_modules/damage_multi_status.gd" id="3_4a625"]
-[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_script/status_data.gd" id="5_mx74q"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="2_wsjj1"]
+[ext_resource type="Script" uid="uid://dl5w8nt7wo5xp" path="res://scripts/status_scripts/status_modules/damage_multi_status.gd" id="3_j38ad"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="4_ieaoo"]
 
 [sub_resource type="Resource" id="Resource_ttwdf"]
-script = ExtResource("3_4a625")
-amount = 100
+script = ExtResource("3_j38ad")
+amount = 10
 metadata/_custom_type_script = "uid://dl5w8nt7wo5xp"
 
 [resource]
-script = ExtResource("5_mx74q")
+script = ExtResource("4_ieaoo")
 id = "damage_multi"
 description = ""
 status_type = "Buff"
 res_type = ""
 trigger = "damage_dealt"
 stat_type = "strength"
-effects = Array[ExtResource("2_7f2ue")]([SubResource("Resource_ttwdf")])
+effects = Array[ExtResource("2_wsjj1")]([SubResource("Resource_ttwdf")])
 actions = Array[ExtResource("1_j34c1")]([])
 visible = true
 is_unique = false
+only_one = false
 max_duration = 3
 stacks = false
 max_stacks = -1

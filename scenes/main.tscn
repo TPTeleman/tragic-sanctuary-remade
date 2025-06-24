@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d3t73c2wishnm" path="res://scripts/entities/entity_stats.gd" id="2_sugp2"]
 [ext_resource type="Resource" uid="uid://ut1s1e74lcks" path="res://resources/entities/heroes/cultist_stats.tres" id="3_jyhfs"]
 [ext_resource type="Resource" uid="uid://quq4db11nrx2" path="res://resources/entities/heroes/druid_stats.tres" id="3_tefeu"]
-[ext_resource type="Resource" uid="uid://bald6crwaljnf" path="res://resources/entities/heroes/archer_stats.tres" id="4_o6xl0"]
+[ext_resource type="Resource" uid="uid://bald6crwaljnf" path="res://resources/entities/heroes/desperado_stats.tres" id="4_o6xl0"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o5qli")

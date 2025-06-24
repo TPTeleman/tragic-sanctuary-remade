@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_4sybt"]
 [ext_resource type="Script" uid="uid://crn2u7dicff4e" path="res://scripts/action_scripts/action_modules/heal_flat_effect.gd" id="2_jb1t8"]
-[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_script/status_modifier.gd" id="3_helr2"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="3_helr2"]
 [ext_resource type="Texture2D" uid="uid://dh7rsnfidqbt4" path="res://sprites/status_sprites/dot_regen.png" id="4_g5jlg"]
-[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_script/status_data.gd" id="5_ca7kv"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="5_ca7kv"]
 
 [sub_resource type="Resource" id="Resource_0gy3l"]
 script = ExtResource("2_jb1t8")
@@ -31,6 +31,7 @@ effects = Array[ExtResource("3_helr2")]([])
 actions = Array[ExtResource("1_4sybt")]([SubResource("Resource_0gy3l")])
 visible = true
 is_unique = true
+only_one = false
 max_duration = 3
 stacks = false
 max_stacks = -1

@@ -23,6 +23,7 @@ const CastRank := {
 @export_range(-100, 100, 1) var crit_mod : int = 0
 @export var is_crit_valid : bool = false
 @export var effects : Array[ActionEffect] = []
+@export var modifiers : Array[EffectModifier] = []
 
 @export_category("Casting Configuration")
 @export var cast_requirements: Array[EffectRule] = []

@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=16 format=3 uid="uid://bsn7ytu6hw8lu"]
+
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_pcvfw"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_q0tuf"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="3_e7dyc"]
+[ext_resource type="Script" uid="uid://cj624g4fbxwqp" path="res://scripts/rule_scripts/rule_modules/status_rule.gd" id="4_uyb2w"]
+[ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="4_wp5u3"]
+[ext_resource type="Resource" uid="uid://byqvjtdeyvu20" path="res://resources/status_effects/unique/unique_exposed.tres" id="5_uyb2w"]
+[ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="7_wxb4h"]
+[ext_resource type="Resource" uid="uid://dxks3ymjfgxl3" path="res://resources/status_effects/hero_exclusive/crimson_king/unique_sated.tres" id="7_x0f6a"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="8_7qpfl"]
+[ext_resource type="Script" uid="uid://viudrmxnetus" path="res://scripts/action_scripts/action_modules/remove_status_effect.gd" id="8_wxb4h"]
+[ext_resource type="Texture2D" uid="uid://b4u3owg6arka0" path="res://sprites/ability_sprites/fangs.png" id="9_7qpfl"]
+
+[sub_resource type="Resource" id="Resource_2o0lt"]
+script = ExtResource("3_e7dyc")
+min_damage = 3
+max_damage = 5
+prot_pierce = 0
+direct_damage = true
+is_crit_valid = true
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[sub_resource type="Resource" id="Resource_ydrf6"]
+script = ExtResource("4_uyb2w")
+status = ExtResource("5_uyb2w")
+desired_value = true
+target_type = 0
+metadata/_custom_type_script = "uid://cj624g4fbxwqp"
+
+[sub_resource type="Resource" id="Resource_wtj3h"]
+script = ExtResource("4_wp5u3")
+status = ExtResource("7_x0f6a")
+duration = 3
+is_resist_valid = false
+target_type = 1
+effect_rule = SubResource("Resource_ydrf6")
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
+
+[sub_resource type="Resource" id="Resource_udai3"]
+script = ExtResource("8_wxb4h")
+status = ExtResource("5_uyb2w")
+target_type = 0
+on_hit = true
+on_miss = true
+apply_once = false
+metadata/_custom_type_script = "uid://viudrmxnetus"
+
+[resource]
+script = ExtResource("8_7qpfl")
+name = "Suck"
+icon = ExtResource("9_7qpfl")
+skill_type = "Ranged"
+skill_tags = 1
+accuracy_mod = 0
+crit_mod = 5
+is_crit_valid = true
+effects = Array[ExtResource("2_q0tuf")]([SubResource("Resource_2o0lt"), SubResource("Resource_wtj3h"), SubResource("Resource_udai3")])
+modifiers = Array[ExtResource("7_wxb4h")]([])
+cast_requirements = Array[ExtResource("1_pcvfw")]([])
+cooldown = 0
+is_aoe = false
+can_target = 2
+cast_ranks = 12
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = true
+metadata/_custom_type_script = "uid://eibvw5jbccws"

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CombatSkill" load_steps=7 format=3 uid="uid://o2elgi1gt6xd"]
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=8 format=3 uid="uid://o2elgi1gt6xd"]
 
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="1_3nu6c"]
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_8t0ne"]
 [ext_resource type="Texture2D" uid="uid://dk2tasyafbri8" path="res://sprites/ability_sprites/high-shot.png" id="1_rhnju"]
 [ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_u77af"]
 [ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="3_u77af"]
+[ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="5_2o0lt"]
 
 [sub_resource type="Resource" id="Resource_2o0lt"]
 script = ExtResource("3_u77af")
@@ -29,6 +30,7 @@ accuracy_mod = 0
 crit_mod = 5
 is_crit_valid = true
 effects = Array[ExtResource("1_8t0ne")]([SubResource("Resource_2o0lt")])
+modifiers = Array[ExtResource("5_2o0lt")]([])
 cast_requirements = Array[ExtResource("1_u77af")]([])
 cooldown = 0
 is_aoe = false
