@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MoveSkill" load_steps=7 format=3 uid="uid://cqbk3vhb5xl0n"]
 
 [ext_resource type="Texture2D" uid="uid://ihb5w3l1iljh" path="res://sprites/ability_sprites/back-forth.png" id="1_q0b2g"]
-[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_vxcsu"]
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_vxcsu"]
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_mmxgo"]
 [ext_resource type="Script" uid="uid://cdwbqqh36xdof" path="res://scripts/action_scripts/action_modules/move_to_rank_effect.gd" id="3_6pirp"]
 [ext_resource type="Script" uid="uid://unv2msytnlmk" path="res://scripts/skill_scripts/move_skill.gd" id="4_atkvm"]

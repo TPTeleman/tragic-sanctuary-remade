@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=10 format=3 uid="uid://gdx8e2swwscd"]
+
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_u00g0"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_5demi"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="3_2qiye"]
+[ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="4_2qiye"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="5_darxa"]
+[ext_resource type="Resource" uid="uid://byqvjtdeyvu20" path="res://resources/status_effects/unique/unique_exposed.tres" id="5_u00g0"]
+[ext_resource type="Texture2D" uid="uid://bxn0aphcqwall" path="res://sprites/ability_sprites/on-target.png" id="6_darxa"]
+
+[sub_resource type="Resource" id="Resource_2o0lt"]
+script = ExtResource("3_2qiye")
+min_damage = 3
+max_damage = 5
+prot_pierce = 0
+direct_damage = true
+is_crit_valid = true
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[sub_resource type="Resource" id="Resource_hflc8"]
+script = ExtResource("4_2qiye")
+status = ExtResource("5_u00g0")
+duration = -1
+is_resist_valid = false
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
+
+[resource]
+script = ExtResource("5_darxa")
+name = "MarkAttack"
+icon = ExtResource("6_darxa")
+skill_type = "Ranged"
+skill_tags = 1
+accuracy_mod = 0
+crit_mod = 5
+is_crit_valid = true
+effects = Array[ExtResource("2_5demi")]([SubResource("Resource_2o0lt"), SubResource("Resource_hflc8")])
+cast_requirements = Array[ExtResource("1_u00g0")]([])
+cooldown = 0
+is_aoe = false
+can_target = 2
+cast_ranks = 12
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = true
+metadata/_custom_type_script = "uid://eibvw5jbccws"

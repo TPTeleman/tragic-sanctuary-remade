@@ -17,10 +17,21 @@ func declare() -> CombatStep:
 		amount *= 1.35
 	
 	context["effect_data"][effect_id]["damage"] = roundi(amount)
+	context["effect_data"][effect_id]["direct_damage"] = direct_damage
+	CombatEvents.broadcast_trigger.emit(context.get("performer", null), "damage_dealt", context)
+	CombatEvents.broadcast_trigger.emit(get_target(), "damage_received", context)
+	var multiplier: int = context["effect_data"][effect_id].get("damage_multi", 0)
+	context["effect_data"][effect_id]["damage"] += roundi(amount * multiplier)
 	
 	return create_step()
 
 
 func apply(performer: Actor, target: Actor) -> void:
 	super.apply(performer, target)
-	target.apply_damage(context["effect_data"][effect_id].get("damage", 0))
+	var effect_data: Dictionary = context["effect_data"][effect_id]
+	target.apply_damage(effect_data.get("damage", 0) + effect_data.get("damage_bonus", 0))
+
+
+func get_description() -> String:
+	var who: String = "target" if hp_percent == 0 else "performer"
+	return "Deals %d%% of the %s's Current HP as Damage" % [who, percent] 

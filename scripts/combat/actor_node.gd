@@ -16,6 +16,7 @@ var rank : int = -1
 var alive := true
 
 @onready var sprite_body : Node2D = %Sprite_Body
+@onready var status_control : StatusControl = %Status_Control
 
 @onready var health_bar : HealthBar = %Health_Bar
 @onready var active_rect : Control = %Active_Marker
@@ -23,10 +24,12 @@ var alive := true
 @onready var select_rect : Control = %Select_Marker
 
 
+
 func _ready() -> void:
 	set_marker("Select")
 	set_marker("Valid")
 	set_marker("Active")
+	update_statuses()
 
 
 func set_body() -> void:
@@ -53,6 +56,10 @@ func get_health() -> int:
 
 func get_health_percent() -> int:
 	return floor(float(stats.cur_hp) / float(stats.max_hp) * 100)
+
+
+func get_status_effects() -> Array[StatusEffect]:
+	return stats.status_effects
 
 
 func set_marker(anc: String, value: bool = false) -> void:
@@ -83,3 +90,21 @@ func apply_damage(amount: int) -> void:
 func apply_heal(amount: int) -> void:
 	stats.increase_health(amount)
 	health_bar.on_recover_health(get_health_percent())
+
+
+func update_statuses() -> void:
+	status_control.update_statuses()
+
+
+func has_status(status_id: String) -> bool:
+	for status in get_status_effects():
+		if status.data.id == status_id:
+			return true
+	return false
+
+
+func get_status(status_id: String) -> StatusEffect:
+	for status in get_status_effects():
+		if status.data.id == status_id:
+			return status
+	return null

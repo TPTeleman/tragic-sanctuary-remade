@@ -9,7 +9,7 @@ class_name MoveEffect
 
 
 func declare() -> CombatStep:
-	var performer: Actor = context.get("performer")
+	var _performer: Actor = context.get("performer")
 	var target: Actor = context.get("target")
 	
 	context["effect_data"][effect_id]["resisted"] = false
@@ -25,6 +25,9 @@ func declare() -> CombatStep:
 		if resist <= move_res:
 			print("Target resisted movement attempt, rolled %d%% with %d%% resistance." % [resist, move_res])
 			context["effect_data"][effect_id]["resisted"] = true
+	
+	if !context["effect_data"][effect_id]["resisted"]:
+		CombatEvents.broadcast_trigger.emit(get_target(), "moved", context)
 	
 	return create_step()
 

@@ -3,6 +3,7 @@ class_name Combat
 
 enum CombatPhase {
 	TURN_START,
+	AFTER_START,
 	ACTOR_COMMAND,
 	SKILL_RESOLUTION,
 	AFTER_SKILL,
@@ -18,6 +19,7 @@ var in_combat: bool = false
 
 @export_category("Combat Components")
 @export var entity_manager : EntityManager
+@export var status_manager : StatusManager
 @export var action_manager : ActionManager
 @export var rank_manager : RankManager
 @export var turn_manager : TurnManager
@@ -31,9 +33,14 @@ func _ready() -> void:
 	TurnEvents.round_ended.connect(_on_turn_manager_round_ended)
 	TurnEvents.turn_ended.connect(_on_actor_turn_ended)
 	
+	CombatEvents.broadcast_trigger.connect(_on_trigger_broadcast)
+	
 	SkillEvents.skill_used.connect(_on_skill_used)
 	SkillEvents.move_target.connect(skill_move_actor)
 	SkillEvents.move_to_rank_target.connect(skill_move_actor_to_rank)
+	SkillEvents.apply_status.connect(skill_apply_status)
+	SkillEvents.remove_status.connect(skill_remove_status)
+	SkillEvents.reduce_status_stack.connect(skill_reduce_status_stack)
 
 
 func switch_battle_phase(new_phase: CombatPhase) -> void:
@@ -42,6 +49,20 @@ func switch_battle_phase(new_phase: CombatPhase) -> void:
 		CombatPhase.TURN_START:
 			CombatEvents.change_battle_phase.emit("Turn_Start")
 			await get_tree().create_timer(0.25).timeout
+			
+			var actor: Actor = turn_manager.get_active_actor()
+			if is_instance_valid(actor) and actor.alive:
+				await status_manager.receive_trigger("turn_start", actor, {})
+			
+			switch_battle_phase(CombatPhase.AFTER_START)
+		CombatPhase.AFTER_START:
+			CombatEvents.change_battle_phase.emit("After_Start")
+			
+			var actor: Actor = turn_manager.get_active_actor()
+			if is_instance_valid(actor) and actor.stats.cur_hp <= 0 and actor.alive:
+					actor.alive = false
+					ActorEvents.actor_defeated.emit(actor)
+			
 			switch_battle_phase(CombatPhase.ACTOR_COMMAND)
 		CombatPhase.ACTOR_COMMAND:
 			CombatEvents.change_battle_phase.emit("Actor_Command")
@@ -53,6 +74,7 @@ func switch_battle_phase(new_phase: CombatPhase) -> void:
 			entity_manager.update_all_markers(enemies, false)
 			
 			await combat_queue.process_actions()
+			
 			switch_battle_phase(CombatPhase.AFTER_SKILL)
 		CombatPhase.AFTER_SKILL:
 			CombatEvents.change_battle_phase.emit("After_Skill")
@@ -68,7 +90,8 @@ func switch_battle_phase(new_phase: CombatPhase) -> void:
 			var actor: Actor = turn_manager.get_active_actor()
 			Gui.get_window_by_name("Combat_Window").hide_actor_display()
 			
-			if is_instance_valid(actor):
+			if is_instance_valid(actor) and actor.alive:
+				status_manager.turn_ended(actor)
 				CombatEvents.turn_ended.emit(actor)
 			turn_manager.next_turn()
 
@@ -137,6 +160,11 @@ func give_actor_control():
 		CombatEvents.turn_started.emit(actor)
 
 
+func _on_trigger_broadcast(actor: Actor, trigger: String, context: Dictionary) -> void:
+	#print("Received trigger: %s!" % trigger)
+	status_manager.receive_trigger(trigger, actor, context)
+
+
 func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill) -> void:
 	var action := CombatAction.new()
 	action.performer = performer
@@ -165,7 +193,7 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 		
 		if t.side != performer.side:
 			var miss_chance : int = 100 - performer.get_stat("Acc") + t.get_stat("Dodge") - skill.accuracy_mod
-			print("Chance to miss: %d%%" % miss_chance)
+			#print("Chance to miss: %d%%" % miss_chance)
 			var roll: float = randf_range(0, 100)
 			context["is_miss"] = roll <= miss_chance
 			if context["is_miss"]:
@@ -173,7 +201,7 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 		
 		if skill.is_crit_valid:
 			var crit_chance: int = skill.crit_mod + performer.get_stat("Crit")
-			print("Chance to crit: %d%%" % crit_chance)
+			#print("Chance to crit: %d%%" % crit_chance)
 			var roll: float = randf_range(0, 100)
 			context["is_crit"] = roll <= crit_chance
 			if context["is_crit"]:
@@ -183,7 +211,10 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 			var effect: ActionEffect = skill.effects[i].duplicate(true)
 			var effect_id := "effect_%d" % i
 			effect.effect_id = effect_id
-			context["effect_data"][effect_id] = {}
+			context["effect_data"][effect_id] = {
+				"skill_id": context["skill_id"],
+				"skill_type": context["skill_type"],
+			}
 			effect.context = context
 			
 			var step := effect.declare()
@@ -216,3 +247,15 @@ func skill_move_actor(_performer: Actor, target: Actor, context: Dictionary) -> 
 func skill_move_actor_to_rank(_performer: Actor, target: Actor, context: Dictionary) -> void:
 	rank_manager.move_entity(target, target.side, context.get("rank", target.rank))
 	rank_manager.slide_entities_forward(target.side)
+
+
+func skill_apply_status(performer: Actor, target: Actor, context: Dictionary) -> void:
+	status_manager.apply_status(performer, target, context)
+
+
+func skill_remove_status(_performer: Actor, target: Actor, context: Dictionary) -> void:
+	status_manager.remove_status(target, context.get("status", ""))
+
+
+func skill_reduce_status_stack(_performer: Actor, _target: Actor, context: Dictionary) -> void:
+	status_manager.reduce_status_stack(context)

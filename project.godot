@@ -23,6 +23,9 @@ ActorEvents="*res://scripts/autoloads/ActorEvents.gd"
 CombatEvents="*res://scripts/autoloads/CombatEvents.gd"
 TurnEvents="*res://scripts/autoloads/TurnEvents.gd"
 SkillEvents="*res://scripts/autoloads/SkillEvents.gd"
+Descriptor="*res://scripts/autoloads/Descriptor.gd"
+ImageCache="*res://scripts/autoloads/ImageCache.gd"
+StatusTooltipBuilder="*res://scripts/autoloads/StatusTooltipBuilder.gd"
 
 [debug]
 

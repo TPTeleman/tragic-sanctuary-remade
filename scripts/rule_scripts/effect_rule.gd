@@ -11,7 +11,7 @@ func get_target(context: Dictionary) -> Actor:
 	return target if target_type == 0 else performer
 
 
-func validate_target(context: Dictionary) -> bool:
+func validate_target(_context: Dictionary) -> bool:
 	return true
 
 

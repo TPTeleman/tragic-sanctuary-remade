@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d06qrtx5nvaxy"]
+[gd_scene load_steps=8 format=3 uid="uid://d06qrtx5nvaxy"]
 
 [ext_resource type="Script" uid="uid://h50i6slkm26b" path="res://scripts/combat/combat_node.gd" id="1_oaoyi"]
 [ext_resource type="Script" uid="uid://c24bk8wdc8pp8" path="res://scripts/combat/managers/entity_manager.gd" id="2_ep2ay"]
@@ -6,10 +6,12 @@
 [ext_resource type="Script" uid="uid://do4cnhofpijjw" path="res://scripts/combat/structure/combat_queue.gd" id="2_w48at"]
 [ext_resource type="Script" uid="uid://bgyw1uvbuv1my" path="res://scripts/combat/managers/turn_manager.gd" id="4_tggl0"]
 [ext_resource type="Script" uid="uid://dso6j0hbm4duk" path="res://scripts/combat/managers/action_manager.gd" id="5_mlh27"]
+[ext_resource type="Script" uid="uid://bf6hej4vbb72k" path="res://scripts/combat/managers/status_manager.gd" id="6_thcyv"]
 
-[node name="Combat_Node" type="Node" node_paths=PackedStringArray("entity_manager", "action_manager", "rank_manager", "turn_manager", "combat_queue")]
+[node name="Combat_Node" type="Node" node_paths=PackedStringArray("entity_manager", "status_manager", "action_manager", "rank_manager", "turn_manager", "combat_queue")]
 script = ExtResource("1_oaoyi")
 entity_manager = NodePath("Managers/Entity_Manager")
+status_manager = NodePath("Managers/Status_Manager")
 action_manager = NodePath("Managers/Action_Manager")
 rank_manager = NodePath("Managers/Rank_Manager")
 turn_manager = NodePath("Managers/Turn_Manager")
@@ -31,7 +33,7 @@ metadata/_custom_type_script = "uid://dso6j0hbm4duk"
 script = ExtResource("2_r42lx")
 hero_rank_one = NodePath("Hero_Rank")
 monster_rank_one = NodePath("Monster_Rank")
-rank_distance = 96
+rank_distance = 128
 metadata/_custom_type_script = "uid://gxvnc03yckpo"
 
 [node name="Hero_Rank" type="Marker2D" parent="Managers/Rank_Manager"]
@@ -43,6 +45,10 @@ position = Vector2(768, 384)
 [node name="Turn_Manager" type="Node" parent="Managers"]
 script = ExtResource("4_tggl0")
 metadata/_custom_type_script = "uid://bgyw1uvbuv1my"
+
+[node name="Status_Manager" type="Node" parent="Managers"]
+script = ExtResource("6_thcyv")
+metadata/_custom_type_script = "uid://bf6hej4vbb72k"
 
 [node name="Combat_Queue" type="Node" parent="."]
 script = ExtResource("2_w48at")

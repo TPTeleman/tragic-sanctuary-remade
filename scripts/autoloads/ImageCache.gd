@@ -1,0 +1,38 @@
+extends Node
+
+const StatIcons := {
+	"BLEED": "res://sprites/stats_sprites/res_bleed.png",
+	"BLIGHT": "res://sprites/stats_sprites/res_blight.png",
+	"BURN": "res://sprites/stats_sprites/res_burn.png",
+	"STUN": "res://sprites/stats_sprites/res_stun.png",
+	"MOVE": "res://sprites/stats_sprites/res_move.png",
+	"DEBUFF": "res://sprites/stats_sprites/stat_debuff.png",
+	"DEATH": "res://sprites/stats_sprites/res_death.png",
+	"HEALTH": "res://sprites/stats_sprites/stat_health.png",
+	"STRESS": "res://sprites/stats_sprites/res_stress.png",
+	"SPEED": "res://sprites/stats_sprites/stat_speed.png",
+}
+const StatusIcons := {
+	"BLEED": "res://sprites/status_sprites/dot_bleed.png",
+	"BLIGHT": "res://sprites/status_sprites/dot_blight.png",
+	"BURN": "res://sprites/status_sprites/dot_burn.png",
+	"REGEN": "res://sprites/status_sprites/dot_regen.png",
+	"BLIND": "res://sprites/status_sprites/status_blind.png",
+	"CRIT": "res://sprites/status_sprites/status_crit.png",
+	"DODGE": "res://sprites/status_sprites/status_dodge.png",
+	"PROT": "res://sprites/status_sprites/status_protection.png",
+	"SLOW": "res://sprites/status_sprites/status_slow.png",
+	"SPEED": "res://sprites/status_sprites/status_speed.png",
+	"STRENGTH": "res://sprites/status_sprites/status_strength.png",
+	"VULNERABLE": "res://sprites/status_sprites/status_vulnerable.png",
+	"WEAK": "res://sprites/status_sprites/status_weak.png",
+	"COMBO": "res://sprites/status_sprites/unique_combo.png",
+	"DEATH": "res://sprites/status_sprites/unique_deaths_door.png",
+	"GUARDED": "res://sprites/status_sprites/unique_guarded.png",
+	"ROOT": "res://sprites/status_sprites/unique_immobilized.png",
+	"MARK": "res://sprites/status_sprites/unique_marked.png",
+	"RIPOSTE": "res://sprites/status_sprites/unique_riposte.png",
+	"STEALTH": "res://sprites/status_sprites/unique_stealth.png",
+	"STUN": "res://sprites/status_sprites/unique_stun.png",
+	"TAUNT": "res://sprites/status_sprites/unique_taunt.png",
+}

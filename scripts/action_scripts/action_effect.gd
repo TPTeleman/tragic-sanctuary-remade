@@ -36,7 +36,7 @@ func create_step() -> CombatStep:
 	return step
 
 
-func apply(performer: Actor, target: Actor) -> void:
+func apply(_performer: Actor, _target: Actor) -> void:
 	if !context["applied_effects"].has(effect_id):
 		context["applied_effects"].append(effect_id)
 

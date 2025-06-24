@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmmsmwuie6spv"]
+[gd_scene load_steps=13 format=3 uid="uid://dmmsmwuie6spv"]
 
 [ext_resource type="Script" uid="uid://b7mljplpuypai" path="res://scripts/combat/actor_node.gd" id="1_e00eg"]
 [ext_resource type="Script" uid="uid://c6giaybka3r11" path="res://scripts/combat/actor_components/mouse_detector.gd" id="2_7gmdj"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://csg2bkdavj4yp" path="res://sprites/actor_node/Rank_Anchor.png" id="6_rtpsx"]
 [ext_resource type="Texture2D" uid="uid://d06yfsclb8ajf" path="res://sprites/actor_node/Select_Anchor.png" id="7_slq4p"]
 [ext_resource type="Texture2D" uid="uid://dxyvxbjvqxu3" path="res://sprites/actor_node/Select_Anchor_Light.png" id="8_xxfdi"]
+[ext_resource type="Script" uid="uid://beeeiajfkvrn2" path="res://scripts/combat/actor_components/status_control.gd" id="9_wyip0"]
+[ext_resource type="Texture2D" uid="uid://ct2rtjewr3d2v" path="res://sprites/status_sprites/status_stat_vuln.png" id="9_xxfdi"]
+[ext_resource type="Texture2D" uid="uid://bo1slnj880hrg" path="res://sprites/status_sprites/status_stat_prot.png" id="10_wyip0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_058bc"]
 size = Vector2(48, 64)
@@ -37,6 +40,7 @@ offset_left = -64.0
 offset_right = 64.0
 offset_bottom = 40.0
 mouse_filter = 2
+metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="Actor_UI"]
 layout_mode = 1
@@ -45,6 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Health_Bar" parent="Actor_UI/Control" instance=ExtResource("4_058bc")]
 unique_name_in_owner = true
@@ -56,6 +61,7 @@ anchor_right = 0.8125
 anchor_bottom = 0.4
 offset_right = 0.0
 offset_bottom = 4.0
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Active_Marker" type="TextureRect" parent="Actor_UI/Control"]
@@ -116,3 +122,76 @@ mouse_filter = 2
 texture = ExtResource("8_xxfdi")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Status_Control" type="Control" parent="Actor_UI" node_paths=PackedStringArray("actor")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = -0.3125
+anchor_top = 0.8
+anchor_right = 1.3125
+anchor_bottom = 2.2
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_wyip0")
+actor = NodePath("../..")
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Actor_UI/Status_Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Unique_Grid" type="GridContainer" parent="Actor_UI/Status_Control/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Actor_UI/Status_Control"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = -24.0
+offset_right = 168.0
+offset_bottom = 8.0
+mouse_filter = 2
+alignment = 1
+
+[node name="Buffs_Rect" type="TextureRect" parent="Actor_UI/Status_Control/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+texture = ExtResource("10_wyip0")
+expand_mode = 1
+
+[node name="Debuffs_Rect" type="TextureRect" parent="Actor_UI/Status_Control/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("9_xxfdi")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="Actor_UI/Status_Control/HBoxContainer/Buffs_Rect" to="Actor_UI/Status_Control" method="_on_buffs_rect_mouse_entered"]
+[connection signal="mouse_exited" from="Actor_UI/Status_Control/HBoxContainer/Buffs_Rect" to="Actor_UI/Status_Control" method="stop_hovering_status"]
+[connection signal="mouse_entered" from="Actor_UI/Status_Control/HBoxContainer/Debuffs_Rect" to="Actor_UI/Status_Control" method="_on_debuffs_rect_mouse_entered"]
+[connection signal="mouse_exited" from="Actor_UI/Status_Control/HBoxContainer/Debuffs_Rect" to="Actor_UI/Status_Control" method="stop_hovering_status"]

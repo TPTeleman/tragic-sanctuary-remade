@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://camb7dtb8cjaw"]
+
+[ext_resource type="Script" uid="uid://cbqys1yg1yknj" path="res://scenes/ui/windows/tooltip_window.gd" id="1_0axuy"]
+[ext_resource type="Theme" uid="uid://dpm2d1jjx06rb" path="res://sprites/themes/borderless_panel_theme.tres" id="2_n6v7i"]
+[ext_resource type="Theme" uid="uid://7mp8knnc0rkm" path="res://sprites/themes/panel_theme.tres" id="3_ayxp8"]
+
+[node name="Tooltip_Window" type="MarginContainer"]
+offset_right = 64.0
+offset_bottom = 16.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_0axuy")
+layer = 3
+metadata/_edit_group_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_n6v7i")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="Background/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("3_ayxp8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Status_Box" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Desc_Lbl" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true

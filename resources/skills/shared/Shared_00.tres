@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="CombatSkill" load_steps=9 format=3 uid="uid://iwtuadg66t4"]
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=10 format=3 uid="uid://iwtuadg66t4"]
 
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="1_7ean5"]
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_oqmfi"]
 [ext_resource type="Texture2D" uid="uid://nv8xvj62qyid" path="res://sprites/ability_sprites/plain-dagger.png" id="1_skbja"]
-[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_swrmv"]
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_swrmv"]
 [ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="2_swrmv"]
-[ext_resource type="Script" uid="uid://csergyx3s5jke" path="res://scripts/action_scripts/action_modules/move_effect.gd" id="4_cidbs"]
+[ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="4_jy6kp"]
+[ext_resource type="Resource" uid="uid://bu01yxglc32rv" path="res://resources/status_effects/dot/bleed/dot_bleed_1.tres" id="5_jy6kp"]
 
 [sub_resource type="Resource" id="Resource_cidbs"]
 script = ExtResource("2_swrmv")
-min_damage = 6
-max_damage = 10
+min_damage = 5
+max_damage = 8
 prot_pierce = 0
 direct_damage = true
 is_crit_valid = true
@@ -20,17 +21,16 @@ on_miss = false
 apply_once = false
 metadata/_custom_type_script = "uid://cttglrr2h7bgu"
 
-[sub_resource type="Resource" id="Resource_jy6kp"]
-script = ExtResource("4_cidbs")
-direction = -1
-step = 1
-pierce_mod = 0
-resist_valid = false
-target_type = 1
+[sub_resource type="Resource" id="Resource_wajpy"]
+script = ExtResource("4_jy6kp")
+status = ExtResource("5_jy6kp")
+duration = 3
+is_resist_valid = false
+target_type = 0
 on_hit = true
-on_miss = true
-apply_once = true
-metadata/_custom_type_script = "uid://csergyx3s5jke"
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
 
 [resource]
 script = ExtResource("1_7ean5")
@@ -41,7 +41,7 @@ skill_tags = 1
 accuracy_mod = 0
 crit_mod = 5
 is_crit_valid = true
-effects = Array[ExtResource("1_oqmfi")]([SubResource("Resource_cidbs"), SubResource("Resource_jy6kp")])
+effects = Array[ExtResource("1_oqmfi")]([SubResource("Resource_cidbs"), SubResource("Resource_wajpy")])
 cast_requirements = Array[ExtResource("1_swrmv")]([])
 cooldown = 0
 is_aoe = false

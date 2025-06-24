@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CombatSkill" load_steps=5 format=3 uid="uid://cf7enxhnpjsrk"]
 
-[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/action_scripts/effect_rule.gd" id="1_ahjom"]
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_ahjom"]
 [ext_resource type="Texture2D" uid="uid://fye60k5vg7vm" path="res://sprites/ability_sprites/interdiction.png" id="1_htw7m"]
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="2_2wfdl"]
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_eh474"]

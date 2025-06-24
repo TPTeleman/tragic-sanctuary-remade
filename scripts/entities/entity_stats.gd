@@ -7,6 +7,7 @@ class_name EntityStats
 @export var skill_set: Array[CombatSkill]
 @export var pass_skill: CombatSkill = load("res://resources/skills/shared/Shared_00_Move.tres")
 @export var move_skill: CombatSkill = load("res://resources/skills/shared/Shared_01_Pass.tres")
+@export var passive_effects : Array[StatusData]
 
 @export_group("Stats")
 @export var max_hp : int = 1
@@ -32,6 +33,7 @@ class_name EntityStats
 
 var cur_hp : int = 0
 var cur_mind : int = 0
+var status_effects : Array[StatusEffect]
 
 
 
@@ -49,6 +51,8 @@ func duplicate_variables(new_stats: EntityStats) -> void:
 	new_stats.max_mind = max_mind
 	new_stats.cur_mind = max_mind
 	new_stats.size = size
+	new_stats.passive_effects = passive_effects.duplicate(true)
+	new_stats.status_effects = [] as Array[StatusEffect]
 	for stat in ["Speed","Accuracy","Dodge","Protection"]:
 		new_stats.set(stat.to_lower(), get_stat(stat))
 	for res in ["Bleed","Blight","Burn","Stun","Move","Debuff","Death"]:

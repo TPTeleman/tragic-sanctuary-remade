@@ -16,10 +16,21 @@ func declare() -> CombatStep:
 		amount *= 1.35
 	
 	context["effect_data"][effect_id]["heal"] = roundi(amount)
+	context["effect_data"][effect_id]["direct_heal"] = direct_heal
+	CombatEvents.broadcast_trigger.emit(context.get("performer", null), "heal_given", context)
+	CombatEvents.broadcast_trigger.emit(get_target(), "heal_received", context)
+	var multiplier: int = context["effect_data"][effect_id].get("heal_multi", 0)
+	context["effect_data"][effect_id]["heal"] += roundi(amount * multiplier)
 	
 	return create_step()
 
 
 func apply(performer: Actor, target: Actor) -> void:
 	super.apply(performer, target)
-	target.apply_heal(context["effect_data"][effect_id].get("heal", 0))
+	var effect_data: Dictionary = context["effect_data"][effect_id]
+	target.apply_heal(effect_data.get("heal", 0) + effect_data.get("heal_bonus", 0))
+
+
+func get_description() -> String:
+	var who: String = "target" if hp_percent == 0 else "performer"
+	return "Heals for %d%% of the %s's Max HP as Damage" % [who, percent] 
