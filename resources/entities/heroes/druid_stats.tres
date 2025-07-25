@@ -1,17 +1,15 @@
-[gd_resource type="Resource" script_class="HeroStats" load_steps=7 format=3 uid="uid://quq4db11nrx2"]
+[gd_resource type="Resource" script_class="HeroStats" load_steps=5 format=3 uid="uid://quq4db11nrx2"]
 
 [ext_resource type="Texture2D" uid="uid://clf5tluilewgv" path="res://sprites/actor_sprites/druid/Druid.png" id="1_lmcv3"]
 [ext_resource type="Script" uid="uid://wt5xynnfgjfk" path="res://scripts/entities/hero_stats.gd" id="2_j5ls4"]
 [ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="2_mga5n"]
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="3_a825e"]
-[ext_resource type="Resource" uid="uid://iwtuadg66t4" path="res://resources/skills/shared/Shared_00.tres" id="4_mga5n"]
-[ext_resource type="Resource" uid="uid://ci3sm7hkj2rff" path="res://resources/skills/shared/Shared_03.tres" id="5_g3476"]
 
 [resource]
 script = ExtResource("2_j5ls4")
 name = "Druid"
 icon = ExtResource("1_lmcv3")
-skill_set = Array[ExtResource("3_a825e")]([ExtResource("4_mga5n"), ExtResource("5_g3476")])
+skill_set = Array[ExtResource("3_a825e")]([])
 passive_effects = Array[ExtResource("2_mga5n")]([])
 max_hp = 42
 max_mind = 0

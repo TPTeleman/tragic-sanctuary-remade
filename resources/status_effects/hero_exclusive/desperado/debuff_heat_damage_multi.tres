@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=8 format=3 uid="uid://cypn5gcpdpgh5"]
+
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_w8l8d"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="2_g1xgx"]
+[ext_resource type="Script" uid="uid://dl5w8nt7wo5xp" path="res://scripts/status_scripts/status_modules/damage_multi_status.gd" id="3_fbi7r"]
+[ext_resource type="Script" uid="uid://dadympt5evmey" path="res://scripts/rule_scripts/rule_modules/skill_match_rule.gd" id="3_ogb0w"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="4_w4mnh"]
+
+[sub_resource type="Resource" id="Resource_rtfl6"]
+script = ExtResource("3_ogb0w")
+skill_id = "heat"
+same = true
+target_type = 0
+metadata/_custom_type_script = "uid://dadympt5evmey"
+
+[sub_resource type="Resource" id="Resource_h6mwy"]
+script = ExtResource("3_fbi7r")
+amount = 15
+effect_rule = SubResource("Resource_rtfl6")
+metadata/_custom_type_script = "uid://dl5w8nt7wo5xp"
+
+[resource]
+script = ExtResource("4_w4mnh")
+id = "damage_multi"
+description = ""
+status_type = "Debuff"
+res_type = "Debuff"
+trigger = "damage_received"
+stat_type = "vulnerable"
+effects = Array[ExtResource("2_g1xgx")]([SubResource("Resource_h6mwy")])
+actions = Array[ExtResource("1_w8l8d")]([])
+visible = true
+is_unique = false
+only_one = false
+max_duration = 3
+stacks = false
+max_stacks = -1
+stack_duration = false
+metadata/_custom_type_script = "uid://4bjiidw6as8e"

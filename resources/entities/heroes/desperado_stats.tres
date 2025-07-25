@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="HeroStats" load_steps=5 format=3 uid="uid://bald6crwaljnf"]
+[gd_resource type="Resource" script_class="HeroStats" load_steps=7 format=3 uid="uid://bald6crwaljnf"]
 
 [ext_resource type="Texture2D" uid="uid://iwglw3cn2fb7" path="res://sprites/actor_sprites/hotshot/hotshot.png" id="1_nqtof"]
 [ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="2_npfnd"]
 [ext_resource type="Script" uid="uid://wt5xynnfgjfk" path="res://scripts/entities/hero_stats.gd" id="3_6b4hk"]
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="4_xhuym"]
+[ext_resource type="Resource" uid="uid://cb4jeaskt6uck" path="res://resources/skills/heroes/desperado/Desperado_01_RisingInferno.tres" id="5_l5idu"]
+[ext_resource type="Resource" uid="uid://bq2e0ej0nnrhl" path="res://resources/skills/heroes/desperado/Desperado_11_ScorchedEarth.tres" id="6_5w2ty"]
 
 [resource]
 script = ExtResource("3_6b4hk")
 name = "Desperado"
 icon = ExtResource("1_nqtof")
-skill_set = Array[ExtResource("4_xhuym")]([])
+skill_set = Array[ExtResource("4_xhuym")]([ExtResource("5_l5idu"), ExtResource("6_5w2ty")])
 passive_effects = Array[ExtResource("2_npfnd")]([])
 max_hp = 26
 max_mind = 0

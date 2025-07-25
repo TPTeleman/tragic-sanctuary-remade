@@ -14,7 +14,7 @@ func declare() -> CombatStep:
 	
 	context["effect_data"][effect_id]["resisted"] = false
 	context["effect_data"][effect_id]["move_pierce"] = 0
-	context["effect_data"][effect_id]["rank"] = target_rank if rank_type == 0 else context["target"].rank
+	context["effect_data"][effect_id]["rank"] = target_rank if rank_type == 0 else context["effect_data"][effect_id]["target"].rank
 	
 	if resist_valid:
 		var resist: int = randi() % 100

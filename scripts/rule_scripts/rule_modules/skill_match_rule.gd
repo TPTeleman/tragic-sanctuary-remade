@@ -7,6 +7,14 @@ class_name SkillMatchRule
 
 
 func validate_target(context: Dictionary) -> bool:
-	if (same and skill_id != context.get("skill_id", "")) or (!same and skill_id == context.get("skill_id", "")):
-		return false
+	var context_skill_id = context.get("skill_id", "")
+	#print("same: ", same, " | ", skill_id, " | ", context_skill_id," = ",skill_id == context_skill_id and same)
+	
+	if same:
+		if skill_id != context_skill_id:
+			return false
+	else:
+		if skill_id == context_skill_id:
+			return false
+	
 	return true

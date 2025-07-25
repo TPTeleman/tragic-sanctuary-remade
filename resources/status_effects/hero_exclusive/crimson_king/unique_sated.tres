@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusData" load_steps=7 format=3 uid="uid://dxks3ymjfgxl3"]
+[gd_resource type="Resource" script_class="StatusData" load_steps=7 format=3 uid="uid://brn4ay6v27iqv"]
 
 [ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_g4ubj"]
 [ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="2_i4uoe"]

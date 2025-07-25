@@ -101,7 +101,7 @@ func get_stat(stat: String) -> int:
 	for status: StatusEffect in status_effects:
 		var data: StatusData = status.data
 		for effect in data.effects:
-			if effect is CombatStatAdd and data.sub_stat == switch:
+			if effect is CombatStatAdd and effect.sub_stat == switch:
 				total_stat += effect.amount
 			if effect is CombatStatMultiply and effect.sub_stat == switch:
 				total_stat += roundi(stat_amount * (float(effect.amount) / 100))

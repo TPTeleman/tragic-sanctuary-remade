@@ -22,6 +22,10 @@ func execute(target: Actor, context: Dictionary) -> void:
 	if !is_instance_valid(source):
 		source = null
 	
+	if context.get("skill_id", "") == "":
+		context["skill_id"] = data.id
+		context["skill_type"] = data.status_type
+	
 	for status in data.effects:
 		if status.should_run(context):
 			status.apply(context)
@@ -31,8 +35,8 @@ func execute(target: Actor, context: Dictionary) -> void:
 		"is_miss": false,
 		"performer": source,
 		"target": target,
-		"skill_id": "",
-		"skill_type": "",
+		"skill_id": data.id,
+		"skill_type": data.status_type,
 		"allies": [],
 		"enemies": [],
 		"applied_effects": [],
@@ -49,7 +53,8 @@ func execute(target: Actor, context: Dictionary) -> void:
 		action.declare()
 	
 	for action in data.actions:
-		action.apply(new_context["performer"], new_context["target"])
+		if action.should_run():
+			action.apply(new_context["performer"], new_context["target"])
 
 
 func get_tooltip_description() -> Dictionary:

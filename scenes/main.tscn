@@ -9,6 +9,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o5qli")
-team = Array[ExtResource("2_sugp2")]([ExtResource("3_tefeu"), ExtResource("4_o6xl0"), ExtResource("3_jyhfs")])
+team = Array[ExtResource("2_sugp2")]([ExtResource("3_tefeu"), ExtResource("3_jyhfs"), ExtResource("4_o6xl0")])
 
 [node name="Combat_Node" parent="." instance=ExtResource("2_0wfyh")]

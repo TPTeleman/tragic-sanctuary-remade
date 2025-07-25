@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="4_wp5u3"]
 [ext_resource type="Resource" uid="uid://byqvjtdeyvu20" path="res://resources/status_effects/unique/unique_exposed.tres" id="5_uyb2w"]
 [ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="7_wxb4h"]
-[ext_resource type="Resource" uid="uid://dxks3ymjfgxl3" path="res://resources/status_effects/hero_exclusive/crimson_king/unique_sated.tres" id="7_x0f6a"]
+[ext_resource type="Resource" uid="uid://dxks3ymjfgxl3" path="res://resources/status_effects/hero_exclusive/desperado/unique_heat.tres" id="7_x0f6a"]
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="8_7qpfl"]
 [ext_resource type="Script" uid="uid://viudrmxnetus" path="res://scripts/action_scripts/action_modules/remove_status_effect.gd" id="8_wxb4h"]
 [ext_resource type="Texture2D" uid="uid://b4u3owg6arka0" path="res://sprites/ability_sprites/fangs.png" id="9_7qpfl"]

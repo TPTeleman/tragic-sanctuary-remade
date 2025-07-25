@@ -52,7 +52,20 @@ func switch_battle_phase(new_phase: CombatPhase) -> void:
 			
 			var actor: Actor = turn_manager.get_active_actor()
 			if is_instance_valid(actor) and actor.alive:
-				await status_manager.receive_trigger("turn_start", actor, {})
+				var context := {
+					"is_crit": false,
+					"is_miss": false,
+					"performer": actor,
+					"target": actor,
+					"skill_id": "",
+					"skill_type": "",
+					"allies": [],
+					"enemies": [],
+					"applied_effects": [],
+					"effect_data": {},
+					"mod_data": {}
+				}
+				await status_manager.receive_trigger("turn_start", actor, context)
 			
 			switch_battle_phase(CombatPhase.AFTER_START)
 		CombatPhase.AFTER_START:
@@ -202,6 +215,25 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 	
 	for t in targets:
 		context["target"] = t
+		#print(t.name)
+		
+		var new_effects: Array[ActionEffect]
+		for i in len(skill.effects):
+			var effect: ActionEffect = skill.effects[i].duplicate(true)
+			var effect_id := "effect_%d" % i
+			effect.effect_id = effect_id
+			context["effect_data"][effect_id] = {
+				"effect_id": effect_id,
+				"skill_id": context["skill_id"],
+				"skill_type": context["skill_type"],
+				"target": t
+			}
+			effect.context = context
+			new_effects.append(effect)
+		
+		for effect in new_effects:
+			var step := effect.declare()
+			action.steps.append(step)
 		
 		for mod in skill.modifiers:
 			if mod.should_run(context) and mod.is_global:
@@ -223,26 +255,10 @@ func _on_skill_used(performer: Actor, targets: Array[Actor], skill: CombatSkill)
 			if context["is_crit"]:
 				print("Yeah, it's a crit.")
 		
-		var new_effects: Array[ActionEffect]
-		for i in len(skill.effects):
-			var effect: ActionEffect = skill.effects[i].duplicate(true)
-			var effect_id := "effect_%d" % i
-			effect.effect_id = effect_id
-			context["effect_data"][effect_id] = {
-				"skill_id": context["skill_id"],
-				"skill_type": context["skill_type"],
-			}
-			effect.context = context
-			new_effects.append(effect)
-		
 		for mod in skill.modifiers:
 			if mod.should_run(context) and !mod.is_global:
 				for effect in new_effects:
 					mod.modify(context["effect_data"].get(effect.effect_id, {}))
-		
-		for effect in new_effects:
-			var step := effect.declare()
-			action.steps.append(step)
 	
 	combat_queue.add_action(action)
 	

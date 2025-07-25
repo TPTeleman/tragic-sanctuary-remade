@@ -9,7 +9,8 @@ class_name ApplyStatusEffect
 
 func declare() -> CombatStep:
 	var performer: Actor = context.get("performer")
-	var target: Actor = context.get("target")
+	var target: Actor = get_target()
+	#print(target.name)
 	
 	var data: StatusData = status.duplicate(true)
 	for i in len(data.effects):

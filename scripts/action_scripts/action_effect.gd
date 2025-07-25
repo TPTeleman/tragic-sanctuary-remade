@@ -19,7 +19,8 @@ func should_run() -> bool:
 		return false
 	if apply_once and context["applied_effects"].has(effect_id):
 		return false
-	if effect_rule != null and !effect_rule.validate_target(context):
+	print(context["effect_data"][effect_id])
+	if effect_rule != null and !effect_rule.validate_target(context["effect_data"][effect_id]):
 		return false
 	return true
 
@@ -33,6 +34,7 @@ func create_step() -> CombatStep:
 	step.effect = self
 	step.performer = context["performer"]
 	step.target = get_target()
+	#print(get_target().name)
 	return step
 
 
@@ -43,11 +45,11 @@ func apply(_performer: Actor, _target: Actor) -> void:
 
 func get_target() -> Actor:
 	var performer: Actor = context["performer"]
-	var target: Actor = context["target"]
+	var target: Actor = context["effect_data"][effect_id]["target"]
 	var true_target: Actor
 	
 	if target_type == 0:
-		true_target = context["target"]
+		true_target = context["effect_data"][effect_id]["target"]
 	elif target_type == 1:
 		true_target = context["performer"]
 	elif target_type == 2:

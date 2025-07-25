@@ -8,4 +8,4 @@ class_name DamageDealtModifier
 func modify(context: Dictionary) -> void:
 	if !context.get("direct_damage", true) or !context.has("damage"):
 		return
-	context["damage"] += damage
+	context["damage_low"] += damage

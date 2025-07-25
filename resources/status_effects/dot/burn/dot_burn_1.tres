@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=7 format=3 uid="uid://b3f6burdopoa6"]
+
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_j0ak8"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="2_umqij"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="3_lwe2w"]
+[ext_resource type="Texture2D" uid="uid://bj280h5vnbuyd" path="res://sprites/status_sprites/dot_burn.png" id="4_sdsad"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="5_jlell"]
+
+[sub_resource type="Resource" id="Resource_orhmy"]
+script = ExtResource("2_umqij")
+min_damage = 1
+max_damage = 1
+prot_pierce = 0
+direct_damage = false
+is_crit_valid = false
+target_type = 0
+on_hit = true
+on_miss = true
+apply_once = true
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[resource]
+script = ExtResource("5_jlell")
+id = "burn"
+description = ""
+status_type = "DoT"
+res_type = "Burn"
+trigger = "turn_start"
+stat_type = "over_time"
+icon = ExtResource("4_sdsad")
+effects = Array[ExtResource("3_lwe2w")]([])
+actions = Array[ExtResource("1_j0ak8")]([SubResource("Resource_orhmy")])
+visible = true
+is_unique = true
+only_one = false
+max_duration = 3
+stacks = false
+max_stacks = -1
+stack_duration = false
+metadata/_custom_type_script = "uid://4bjiidw6as8e"

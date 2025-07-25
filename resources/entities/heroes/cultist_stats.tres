@@ -1,18 +1,15 @@
-[gd_resource type="Resource" script_class="HeroStats" load_steps=8 format=3 uid="uid://ut1s1e74lcks"]
+[gd_resource type="Resource" script_class="HeroStats" load_steps=5 format=3 uid="uid://ut1s1e74lcks"]
 
 [ext_resource type="Texture2D" uid="uid://j5epp86yv7ka" path="res://sprites/actor_sprites/cultist/cultist.png" id="1_n33v0"]
 [ext_resource type="Script" uid="uid://wt5xynnfgjfk" path="res://scripts/entities/hero_stats.gd" id="1_qwm7q"]
 [ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="2_djxre"]
 [ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="3_ro77x"]
-[ext_resource type="Resource" uid="uid://bsn7ytu6hw8lu" path="res://resources/skills/shared/Shared_05.tres" id="5_6hc03"]
-[ext_resource type="Resource" uid="uid://dab56ijtgh3x3" path="res://resources/skills/shared/Shared_02.tres" id="5_eqeue"]
-[ext_resource type="Resource" uid="uid://ci3sm7hkj2rff" path="res://resources/skills/shared/Shared_03.tres" id="5_ro77x"]
 
 [resource]
 script = ExtResource("1_qwm7q")
 name = "CrimsonKing"
 icon = ExtResource("1_n33v0")
-skill_set = Array[ExtResource("3_ro77x")]([ExtResource("5_6hc03"), ExtResource("5_eqeue"), ExtResource("5_ro77x")])
+skill_set = Array[ExtResource("3_ro77x")]([])
 passive_effects = Array[ExtResource("2_djxre")]([])
 max_hp = 38
 max_mind = 0
@@ -23,7 +20,7 @@ speed = 1
 size = 1
 forward_move = 1
 bakward_move = 1
-actions_amount = 1
+actions_amount = 0
 bleed_res = 40
 blight_res = 40
 burn_res = 40

@@ -10,15 +10,18 @@ class_name DamageFlatEffect
 
 
 func declare() -> CombatStep:
-	var amount: float = randf_range(min_damage, max_damage)
-	
-	if context.get("is_crit", false) and is_crit_valid:
-		amount = max_damage * 1.35
-	
-	context["effect_data"][effect_id]["damage"] = roundi(amount)
+	context["effect_data"][effect_id]["damage"] = 0
 	context["effect_data"][effect_id]["direct_damage"] = direct_damage
 	CombatEvents.broadcast_trigger.emit(context.get("performer", null), "damage_dealt", context)
 	CombatEvents.broadcast_trigger.emit(get_target(), "damage_received", context)
+	var amount: float = randf_range(min_damage + context["effect_data"][effect_id].get("damage_low", 0), max_damage + context["effect_data"][effect_id].get("damage_high", 0))
+	
+	if context.get("is_crit", false) and is_crit_valid:
+		amount = (max_damage + context.get("damage_high", 0)) * 1.35
+	
+	#print(roundi(amount))
+	
+	context["effect_data"][effect_id]["damage"] = roundi(amount)
 	var multiplier: int = context["effect_data"][effect_id].get("damage_multi", 0)
 	context["effect_data"][effect_id]["damage"] += roundi(amount * multiplier)
 	

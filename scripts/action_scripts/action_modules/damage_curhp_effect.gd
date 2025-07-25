@@ -10,7 +10,7 @@ class_name DamageCurHPEffect
 
 
 func declare() -> CombatStep:
-	var hp_host: Actor = context["performer"] if hp_percent == 1 else context["target"]
+	var hp_host: Actor = context["performer"] if hp_percent == 1 else context["effect_data"][effect_id]["target"]
 	var amount: float = hp_host.get_health() * (float(percent) / 100)
 	
 	if context.get("is_crit", false) and is_crit_valid:

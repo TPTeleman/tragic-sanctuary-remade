@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=13 format=3 uid="uid://cb4jeaskt6uck"]
+
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_54etr"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_1xk8x"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="3_jhs4s"]
+[ext_resource type="Resource" uid="uid://cl0aaesxale24" path="res://resources/status_effects/hero_exclusive/desperado/buff_rising_inferno_damage.tres" id="5_54etr"]
+[ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="5_uxxsu"]
+[ext_resource type="Texture2D" uid="uid://cowe0k6825p8b" path="res://sprites/ability_sprites/burning-skull.png" id="6_1xk8x"]
+[ext_resource type="Resource" uid="uid://b3f6burdopoa6" path="res://resources/status_effects/dot/burn/dot_burn_1.tres" id="6_jhs4s"]
+[ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="7_lgf8y"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="8_nd806"]
+
+[sub_resource type="Resource" id="Resource_7r5p0"]
+script = ExtResource("3_jhs4s")
+min_damage = 4
+max_damage = 6
+prot_pierce = 0
+direct_damage = true
+is_crit_valid = true
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[sub_resource type="Resource" id="Resource_wsqik"]
+script = ExtResource("5_uxxsu")
+status = ExtResource("5_54etr")
+duration = 3
+is_resist_valid = false
+target_type = 1
+on_hit = true
+on_miss = true
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
+
+[sub_resource type="Resource" id="Resource_vuly0"]
+script = ExtResource("5_uxxsu")
+status = ExtResource("6_jhs4s")
+duration = 3
+is_resist_valid = false
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
+
+[resource]
+script = ExtResource("8_nd806")
+name = "RisingInferno"
+icon = ExtResource("6_1xk8x")
+skill_type = "None"
+skill_tags = 5
+accuracy_mod = 0
+crit_mod = 5
+is_crit_valid = false
+effects = Array[ExtResource("2_1xk8x")]([SubResource("Resource_7r5p0"), SubResource("Resource_wsqik"), SubResource("Resource_vuly0")])
+modifiers = Array[ExtResource("7_lgf8y")]([])
+cast_requirements = Array[ExtResource("1_54etr")]([])
+cooldown = 0
+is_aoe = false
+can_target = 2
+cast_ranks = 12
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = false
+metadata/_custom_type_script = "uid://eibvw5jbccws"

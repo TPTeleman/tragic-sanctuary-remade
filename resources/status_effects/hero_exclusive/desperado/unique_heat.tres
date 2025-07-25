@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=12 format=3 uid="uid://dxks3ymjfgxl3"]
+
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_v1ope"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="2_u68e8"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="3_1bsxe"]
+[ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="3_l8yab"]
+[ext_resource type="Texture2D" uid="uid://4kek8np8rhym" path="res://sprites/status_sprites/unique_onfire.png" id="4_l8yab"]
+[ext_resource type="Resource" uid="uid://cypn5gcpdpgh5" path="res://resources/status_effects/hero_exclusive/desperado/debuff_heat_damage_multi.tres" id="4_omhcy"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="5_omhcy"]
+[ext_resource type="Script" uid="uid://dl5w8nt7wo5xp" path="res://scripts/status_scripts/status_modules/damage_multi_status.gd" id="6_u8sq2"]
+
+[sub_resource type="Resource" id="Resource_u8sq2"]
+script = ExtResource("2_u68e8")
+min_damage = 1
+max_damage = 1
+prot_pierce = 0
+direct_damage = false
+is_crit_valid = false
+target_type = 0
+on_hit = true
+on_miss = true
+apply_once = true
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[sub_resource type="Resource" id="Resource_yvto5"]
+script = ExtResource("3_l8yab")
+status = ExtResource("4_omhcy")
+duration = -1
+is_resist_valid = false
+target_type = 0
+on_hit = true
+on_miss = true
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
+
+[sub_resource type="Resource" id="Resource_1xspo"]
+script = ExtResource("6_u8sq2")
+amount = 10
+metadata/_custom_type_script = "uid://dl5w8nt7wo5xp"
+
+[resource]
+script = ExtResource("5_omhcy")
+id = "heat"
+description = "Damages the holder for every stack accumulated at the start of the turn."
+status_type = "Unique"
+res_type = ""
+trigger = "turn_start"
+stat_type = ""
+icon = ExtResource("4_l8yab")
+effects = Array[ExtResource("3_1bsxe")]([SubResource("Resource_1xspo")])
+actions = Array[ExtResource("1_v1ope")]([SubResource("Resource_u8sq2"), SubResource("Resource_yvto5")])
+visible = true
+is_unique = true
+only_one = false
+max_duration = -1
+stacks = true
+max_stacks = 6
+stack_duration = false
+metadata/_custom_type_script = "uid://4bjiidw6as8e"

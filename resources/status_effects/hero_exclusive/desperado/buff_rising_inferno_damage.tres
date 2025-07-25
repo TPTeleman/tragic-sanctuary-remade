@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=8 format=3 uid="uid://cl0aaesxale24"]
+
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_2ft57"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="2_v8rap"]
+[ext_resource type="Script" uid="uid://dadympt5evmey" path="res://scripts/rule_scripts/rule_modules/skill_match_rule.gd" id="3_v8rap"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="4_cq87u"]
+[ext_resource type="Script" uid="uid://had0b8c6sao5" path="res://scripts/status_scripts/status_modules/damage_flat_status.gd" id="4_v8rap"]
+
+[sub_resource type="Resource" id="Resource_fda0a"]
+script = ExtResource("3_v8rap")
+skill_id = "RisingInferno"
+same = true
+target_type = 0
+metadata/_custom_type_script = "uid://dadympt5evmey"
+
+[sub_resource type="Resource" id="Resource_cq87u"]
+script = ExtResource("4_v8rap")
+amount_l = 1
+amount_h = 2
+effect_rule = SubResource("Resource_fda0a")
+metadata/_custom_type_script = "uid://had0b8c6sao5"
+
+[resource]
+script = ExtResource("4_cq87u")
+id = "damage_flat"
+description = ""
+status_type = "Buff"
+res_type = ""
+trigger = "damage_dealt"
+stat_type = "strength"
+effects = Array[ExtResource("2_v8rap")]([SubResource("Resource_cq87u")])
+actions = Array[ExtResource("1_2ft57")]([])
+visible = true
+is_unique = false
+only_one = false
+max_duration = 3
+stacks = false
+max_stacks = -1
+stack_duration = false
+metadata/_custom_type_script = "uid://4bjiidw6as8e"

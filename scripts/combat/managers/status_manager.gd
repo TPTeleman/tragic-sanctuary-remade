@@ -29,7 +29,7 @@ func apply_status(performer: Actor, target: Actor, context: Dictionary) -> void:
 			found = effect
 			break
 	
-	if found == null:
+	if found == null or (!found.data.stacks and !found.data.only_one):
 		var instance := StatusEffect.new(status_data, context.get("duration", status_data.max_duration), performer)
 		instance.ignore_turn = context.get("ignore", false)
 		target.get_status_effects().append(instance)

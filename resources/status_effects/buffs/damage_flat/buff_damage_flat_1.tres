@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=7 format=3 uid="uid://bfoeagaj1xuwq"]
+
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="1_26jio"]
+[ext_resource type="Script" uid="uid://blaep1yxmafko" path="res://scripts/status_scripts/status_modifier.gd" id="2_nlole"]
+[ext_resource type="Script" uid="uid://b8lk3cvljwjid" path="res://scripts/status_scripts/status_modules/combat_stat_add.gd" id="3_fetv5"]
+[ext_resource type="Script" uid="uid://4bjiidw6as8e" path="res://scripts/status_scripts/status_data.gd" id="4_1ankm"]
+
+[sub_resource type="Resource" id="Resource_ct542"]
+script = ExtResource("3_fetv5")
+sub_stat = "dmg_l"
+amount = 1
+metadata/_custom_type_script = "uid://b8lk3cvljwjid"
+
+[sub_resource type="Resource" id="Resource_u07ye"]
+script = ExtResource("3_fetv5")
+sub_stat = "dmg_h"
+amount = 1
+metadata/_custom_type_script = "uid://b8lk3cvljwjid"
+
+[resource]
+script = ExtResource("4_1ankm")
+id = "damage_flat"
+description = ""
+status_type = "Buff"
+res_type = ""
+trigger = "damage_dealt"
+stat_type = "strength"
+effects = Array[ExtResource("2_nlole")]([SubResource("Resource_ct542"), SubResource("Resource_u07ye")])
+actions = Array[ExtResource("1_26jio")]([])
+visible = true
+is_unique = false
+only_one = false
+max_duration = 3
+stacks = false
+max_stacks = -1
+stack_duration = false
+metadata/_custom_type_script = "uid://4bjiidw6as8e"

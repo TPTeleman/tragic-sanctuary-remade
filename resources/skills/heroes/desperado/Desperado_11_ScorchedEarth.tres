@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=13 format=3 uid="uid://bq2e0ej0nnrhl"]
+
+[ext_resource type="Script" uid="uid://cyktxxowcjs21" path="res://scripts/rule_scripts/effect_rule.gd" id="1_debb2"]
+[ext_resource type="Script" uid="uid://doxdaniith5ug" path="res://scripts/action_scripts/action_effect.gd" id="2_6i5l2"]
+[ext_resource type="Script" uid="uid://bel6j2vt1dknv" path="res://scripts/modifier_scripts/effect_modifier.gd" id="3_co230"]
+[ext_resource type="Script" uid="uid://cttglrr2h7bgu" path="res://scripts/action_scripts/action_modules/damage_flat_effect.gd" id="3_phpl8"]
+[ext_resource type="Script" uid="uid://eibvw5jbccws" path="res://scripts/skill_scripts/combat_skill.gd" id="4_w3cde"]
+[ext_resource type="Script" uid="uid://cj624g4fbxwqp" path="res://scripts/rule_scripts/rule_modules/status_rule.gd" id="4_wd63e"]
+[ext_resource type="Script" uid="uid://c4vgv88su5cef" path="res://scripts/action_scripts/action_modules/apply_status_effect.gd" id="5_qaei7"]
+[ext_resource type="Texture2D" uid="uid://bdlpyxuhxjyak" path="res://sprites/ability_sprites/fire-iris.png" id="6_65ofr"]
+[ext_resource type="Resource" uid="uid://dxks3ymjfgxl3" path="res://resources/status_effects/hero_exclusive/desperado/unique_heat.tres" id="6_wd63e"]
+
+[sub_resource type="Resource" id="Resource_7r5p0"]
+script = ExtResource("3_phpl8")
+min_damage = 10
+max_damage = 10
+prot_pierce = 0
+direct_damage = true
+is_crit_valid = true
+target_type = 0
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://cttglrr2h7bgu"
+
+[sub_resource type="Resource" id="Resource_hpohi"]
+script = ExtResource("4_wd63e")
+status_id = "burn"
+desired_value = true
+target_type = 0
+metadata/_custom_type_script = "uid://cj624g4fbxwqp"
+
+[sub_resource type="Resource" id="Resource_wsqik"]
+script = ExtResource("5_qaei7")
+status = ExtResource("6_wd63e")
+duration = -1
+is_resist_valid = false
+target_type = 1
+effect_rule = SubResource("Resource_hpohi")
+on_hit = true
+on_miss = false
+apply_once = false
+metadata/_custom_type_script = "uid://c4vgv88su5cef"
+
+[resource]
+script = ExtResource("4_w3cde")
+name = "ScorchedEarth"
+icon = ExtResource("6_65ofr")
+skill_type = "None"
+skill_tags = 5
+accuracy_mod = 0
+crit_mod = 5
+is_crit_valid = true
+effects = Array[ExtResource("2_6i5l2")]([SubResource("Resource_7r5p0"), SubResource("Resource_wsqik")])
+modifiers = Array[ExtResource("3_co230")]([])
+cast_requirements = Array[ExtResource("1_debb2")]([])
+cooldown = 0
+is_aoe = true
+can_target = 2
+cast_ranks = 12
+target_ranks = 15
+can_target_alive = true
+can_target_corpse = false
+metadata/_custom_type_script = "uid://eibvw5jbccws"
